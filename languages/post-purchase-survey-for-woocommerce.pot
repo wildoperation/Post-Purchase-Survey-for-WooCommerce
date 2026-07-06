@@ -1,0 +1,551 @@
+# Copyright (C) 2026 Wild Operation
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Post-Purchase Survey for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/post-purchase-survey-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-06T19:28:18+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: post-purchase-survey-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: post-purchase-survey-for-woocommerce.php
+msgid "Post-Purchase Survey for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: post-purchase-survey-for-woocommerce.php
+msgid "https://wildoperation.com"
+msgstr ""
+
+#. Description of the plugin
+#: post-purchase-survey-for-woocommerce.php
+msgid "Ask customers \"How did you hear about us?\" on the WooCommerce thank-you page and report which channels drive your orders."
+msgstr ""
+
+#. Author of the plugin
+#: post-purchase-survey-for-woocommerce.php
+msgid "Wild Operation"
+msgstr ""
+
+#: includes/Admin.php:80
+#: includes/Admin.php:140
+#: includes/Admin.php:141
+#: includes/AdminSurvey.php:57
+msgid "Survey"
+msgstr ""
+
+#: includes/Admin.php:84
+#: includes/Admin.php:106
+#: includes/Admin.php:158
+#: includes/Admin.php:159
+msgid "Settings"
+msgstr ""
+
+#: includes/Admin.php:110
+msgid "Data"
+msgstr ""
+
+#: includes/Admin.php:112
+msgid "Uninstall"
+msgstr ""
+
+#: includes/Admin.php:149
+#: includes/Admin.php:150
+#: includes/Admin.php:274
+msgid "Reports"
+msgstr ""
+
+#: includes/Admin.php:242
+#: includes/Admin.php:289
+#: includes/OrderMeta.php:43
+#: includes/Plugin.php:24
+msgid "Post-Purchase Survey"
+msgstr ""
+
+#: includes/Admin.php:260
+msgid "The survey is enabled, but it has no published question with enabled answers, so customers will not see it. Publish a selected question below (or select a published one)."
+msgstr ""
+
+#: includes/Admin.php:312
+msgid "The Post-Purchase Survey is not currently enabled, so customers will not see it after checkout."
+msgstr ""
+
+#: includes/Admin.php:313
+msgid "Enable the survey"
+msgstr ""
+
+#: includes/Admin.php:416
+#: includes/AdminSurvey.php:218
+msgid "Remove"
+msgstr ""
+
+#: includes/Admin.php:417
+#: includes/AdminSurvey.php:217
+msgid "Edit"
+msgstr ""
+
+#: includes/Admin.php:441
+msgid "Delete all plugin data (responses, questions, settings, order meta) when the plugin is uninstalled"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:53
+msgid "Changing a question will not reset responses and report data. To do so, create a new question."
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:108
+msgid "Answer Options"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:122
+msgid "Report"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:144
+msgid "No responses for this question yet."
+msgstr ""
+
+#. translators: %s: the total number of responses.
+#: includes/AdminQuestionMeta.php:155
+#, php-format
+msgid "%s response, all time."
+msgid_plural "%s responses, all time."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/AdminQuestionMeta.php:160
+msgid "View full report"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:166
+#: includes/AdminReports.php:408
+#: includes/Privacy.php:111
+msgid "Answer"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:167
+#: includes/AdminReports.php:374
+#: includes/AdminReports.php:409
+msgid "Responses"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:168
+#: includes/AdminReports.php:410
+msgid "Percentage"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:187
+msgid "Delete all responses for this question? This also removes them from reports and cannot be undone."
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:188
+msgid "Delete All Responses"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:201
+msgid "You are not allowed to delete survey responses."
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:210
+msgid "Invalid question."
+msgstr ""
+
+#. translators: %s: the number of deleted responses.
+#: includes/AdminQuestionMeta.php:252
+#, php-format
+msgid "%s survey response deleted."
+msgid_plural "%s survey responses deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/AdminQuestionMeta.php:319
+msgid "Label"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:321
+msgid "Status"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:332
+msgid "Drag to reorder. Disabled options are hidden from customers but keep their reporting history."
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:350
+msgid "Offer an \"Other\" option with a free-text field"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:355
+msgid "\"Other\" label"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:405
+msgid "Enabled"
+msgstr ""
+
+#: includes/AdminQuestionMeta.php:406
+msgid "Disabled"
+msgstr ""
+
+#: includes/AdminReports.php:17
+msgid "Last 7 days"
+msgstr ""
+
+#: includes/AdminReports.php:18
+msgid "Last 30 days"
+msgstr ""
+
+#: includes/AdminReports.php:19
+msgid "Last 90 days"
+msgstr ""
+
+#: includes/AdminReports.php:20
+msgid "This month"
+msgstr ""
+
+#: includes/AdminReports.php:21
+msgid "This year"
+msgstr ""
+
+#: includes/AdminReports.php:22
+msgid "All time"
+msgstr ""
+
+#: includes/AdminReports.php:23
+msgid "Custom range"
+msgstr ""
+
+#. translators: %d: a question ID that no longer exists.
+#: includes/AdminReports.php:152
+#: includes/OrderMeta.php:92
+#, php-format
+msgid "Question #%d (deleted)"
+msgstr ""
+
+#: includes/AdminReports.php:330
+#: includes/Privacy.php:107
+msgid "Question"
+msgstr ""
+
+#: includes/AdminReports.php:338
+msgid "Date range"
+msgstr ""
+
+#: includes/AdminReports.php:346
+msgid "From date"
+msgstr ""
+
+#: includes/AdminReports.php:349
+msgid "To date"
+msgstr ""
+
+#: includes/AdminReports.php:353
+msgid "Apply"
+msgstr ""
+
+#: includes/AdminReports.php:355
+msgid "The custom dates apply when \"Custom range\" is selected."
+msgstr ""
+
+#: includes/AdminReports.php:378
+msgid "Orders in range"
+msgstr ""
+
+#: includes/AdminReports.php:390
+msgid "Response rate"
+msgstr ""
+
+#: includes/AdminReports.php:424
+msgid "Total"
+msgstr ""
+
+#: includes/AdminReports.php:452
+msgid "No responses yet"
+msgstr ""
+
+#: includes/AdminReports.php:456
+msgid "The survey is currently disabled."
+msgstr ""
+
+#: includes/AdminReports.php:457
+msgid "Enable it on the Survey screen to start collecting responses."
+msgstr ""
+
+#: includes/AdminReports.php:461
+msgid "The survey has no published question with enabled answers, so it is not being shown."
+msgstr ""
+
+#: includes/AdminReports.php:462
+msgid "Review the Survey screen."
+msgstr ""
+
+#: includes/AdminReports.php:465
+msgid "Responses will appear here after customers answer the survey on the order-received (thank you) page. No responses were found for this question in the selected date range."
+msgstr ""
+
+#: includes/AdminReports.php:469
+msgid "Here is how the survey currently appears to customers:"
+msgstr ""
+
+#: includes/AdminReports.php:479
+msgid "(with a free-text field)"
+msgstr ""
+
+#: includes/AdminSurvey.php:62
+msgid "Enable survey"
+msgstr ""
+
+#: includes/AdminSurvey.php:63
+msgid "Survey questions"
+msgstr ""
+
+#: includes/AdminSurvey.php:67
+msgid "Display"
+msgstr ""
+
+#: includes/AdminSurvey.php:69
+msgid "Survey position"
+msgstr ""
+
+#: includes/AdminSurvey.php:70
+msgid "Thank you message"
+msgstr ""
+
+#: includes/AdminSurvey.php:113
+msgid "Show the survey on the order-received (thank you) page"
+msgstr ""
+
+#: includes/AdminSurvey.php:127
+msgid "Below the order details"
+msgstr ""
+
+#: includes/AdminSurvey.php:128
+msgid "Above the order details"
+msgstr ""
+
+#: includes/AdminSurvey.php:132
+msgid "The block-based order confirmation template always displays the survey in its \"Additional information\" area."
+msgstr ""
+
+#: includes/AdminSurvey.php:152
+msgid "Shown in place of the survey after a customer responds."
+msgstr ""
+
+#: includes/AdminSurvey.php:177
+msgid "Search questions"
+msgstr ""
+
+#: includes/AdminSurvey.php:178
+msgid "Search questions&hellip;"
+msgstr ""
+
+#. translators: %d: the maximum number of survey questions.
+#: includes/AdminSurvey.php:186
+#, php-format
+msgid "The survey shows %d question. Remove the selected question to choose a different one."
+msgid_plural "The survey shows up to %d questions."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/AdminSurvey.php:193
+msgid "Draft and pending questions can be selected while you prepare them, but only published questions are shown to customers."
+msgstr ""
+
+#: includes/AdminSurvey.php:213
+#: includes/AdminSurvey.php:313
+msgid "(no title)"
+msgstr ""
+
+#: includes/AdminSurvey.php:230
+msgid "Published"
+msgstr ""
+
+#: includes/AdminSurvey.php:231
+msgid "Draft"
+msgstr ""
+
+#: includes/AdminSurvey.php:232
+msgid "Pending"
+msgstr ""
+
+#: includes/Front.php:224
+msgid "Submit"
+msgstr ""
+
+#: includes/Front.php:268
+#: includes/Front.php:269
+msgid "Please tell us more"
+msgstr ""
+
+#: includes/Front.php:391
+msgid "Sorry, your response could not be saved. Please refresh the page and try again."
+msgstr ""
+
+#: includes/Front.php:537
+msgid "Please choose an answer before submitting."
+msgstr ""
+
+#: includes/OrderMeta.php:70
+msgid "No survey response for this order."
+msgstr ""
+
+#. translators: %s: the date the survey response was submitted.
+#: includes/OrderMeta.php:111
+#, php-format
+msgid "Submitted %s"
+msgstr ""
+
+#: includes/PostTypes.php:29
+msgid "Survey Questions"
+msgstr ""
+
+#: includes/PostTypes.php:30
+#: includes/PostTypes.php:32
+#: includes/PostTypes.php:61
+msgid "Survey Question"
+msgstr ""
+
+#: includes/PostTypes.php:31
+msgid "Purchase Survey"
+msgstr ""
+
+#: includes/PostTypes.php:33
+msgid "Questions"
+msgstr ""
+
+#: includes/PostTypes.php:34
+#: includes/PostTypes.php:35
+msgid "Add New Question"
+msgstr ""
+
+#: includes/PostTypes.php:36
+msgid "New Question"
+msgstr ""
+
+#: includes/PostTypes.php:37
+msgid "Edit Question"
+msgstr ""
+
+#: includes/PostTypes.php:38
+msgid "Update Question"
+msgstr ""
+
+#: includes/PostTypes.php:39
+msgid "View Question"
+msgstr ""
+
+#: includes/PostTypes.php:40
+msgid "View Questions"
+msgstr ""
+
+#: includes/PostTypes.php:41
+msgid "Search Questions"
+msgstr ""
+
+#: includes/PostTypes.php:42
+msgid "No questions found. Create one, then select it on the Survey screen."
+msgstr ""
+
+#: includes/PostTypes.php:43
+msgid "No questions found in Trash"
+msgstr ""
+
+#: includes/PostTypes.php:44
+msgid "Question list"
+msgstr ""
+
+#: includes/PostTypes.php:45
+msgid "Questions list navigation"
+msgstr ""
+
+#: includes/PostTypes.php:46
+msgid "Filter question list"
+msgstr ""
+
+#: includes/PostTypes.php:62
+msgid "A post-purchase survey question"
+msgstr ""
+
+#: includes/PostTypes.php:94
+msgid "Enter your question, e.g. \"How did you hear about us?\""
+msgstr ""
+
+#: includes/Privacy.php:36
+#: includes/Privacy.php:52
+#: includes/Privacy.php:130
+msgid "Post-Purchase Survey Responses"
+msgstr ""
+
+#: includes/Privacy.php:103
+msgid "Order ID"
+msgstr ""
+
+#: includes/Privacy.php:118
+msgid "Additional details"
+msgstr ""
+
+#: includes/Privacy.php:124
+msgid "Submitted"
+msgstr ""
+
+#: includes/Survey.php:51
+msgid "Thanks for your feedback!"
+msgstr ""
+
+#: includes/Survey.php:61
+msgid "Other"
+msgstr ""
+
+#: includes/Survey.php:84
+msgid "Search engine (Google, Bing, etc.)"
+msgstr ""
+
+#: includes/Survey.php:89
+msgid "Social media"
+msgstr ""
+
+#: includes/Survey.php:94
+msgid "Friend or family"
+msgstr ""
+
+#: includes/Survey.php:99
+msgid "Online advertisement"
+msgstr ""
+
+#: includes/Survey.php:104
+msgid "Podcast or video"
+msgstr ""
+
+#: includes/Survey.php:116
+msgid "How did you hear about us?"
+msgstr ""
+
+#: post-purchase-survey-for-woocommerce.php:77
+msgid "Your reviews are invaluable to Post-Purchase Survey for WooCommerce and help us maintain a free version of this plugin. We appreciate your support! If you need assistance, please visit the support section of this plugin."
+msgstr ""
+
+#: post-purchase-survey-for-woocommerce.php:78
+msgid "Leave ★★★★★ rating"
+msgstr ""
+
+#: post-purchase-survey-for-woocommerce.php:79
+msgid "I need help"
+msgstr ""
+
+#: post-purchase-survey-for-woocommerce.php:80
+msgid "Remind me later"
+msgstr ""
+
+#: post-purchase-survey-for-woocommerce.php:81
+msgid "Don't ask again"
+msgstr ""
+
+#: post-purchase-survey-for-woocommerce.php:106
+msgid "Post-Purchase Survey for WooCommerce requires WooCommerce to be installed and active."
+msgstr ""

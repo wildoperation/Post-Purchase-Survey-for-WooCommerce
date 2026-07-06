@@ -1,0 +1,159 @@
+$speed: 100ms;
+$ease: ease-in-out;
+
+.wometa-repeater-sort-icon {
+	cursor: grab;
+	display: inline-block;
+	opacity: 0.15;
+	margin-right: 5px;
+	width: auto;
+	height: 16px;
+}
+
+.wometa-repeater-row {
+	td {
+		vertical-align: middle;
+		padding: 5px;
+
+		&.wometa-repeater-sort {
+			padding-left: 0;
+		}
+
+		input,
+		select {
+			width: 100%;
+		}
+	}
+}
+
+.widefat {
+	.wometa-repeater-row {
+		td,
+		th {
+			padding: 8px 10px;
+		}
+
+		input,
+		select {
+			width: auto;
+		}
+	}
+}
+
+.wometa-repeater-controls {
+	line-height: 1;
+	white-space: nowrap;
+
+	button {
+		cursor: pointer;
+		display: inline-block;
+		outline: none;
+		padding: 0;
+		margin-left: 5px;
+		background: none;
+		box-shadow: none;
+		opacity: 0.75;
+		transition:
+			opacity $speed $ease,
+			transform $speed $ease;
+		border: 1px solid #000;
+		border-radius: 50%;
+		line-height: 1;
+		min-height: 20px;
+		min-width: 20px;
+
+		&:hover {
+			opacity: 1;
+			transform: scale(1.1);
+		}
+
+		&:disabled {
+			cursor: default;
+			opacity: 0.1;
+		}
+	}
+
+	.wometa-repeater-controls--remove {
+		border-color: #ac0101;
+		color: #ac0101;
+	}
+}
+
+.woadmin-form-inner {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-top: none;
+	padding: 1rem;
+
+	p.submit {
+		&:last-child {
+			padding-bottom: 0;
+		}
+	}
+
+	h2 {
+		border-top: 1px solid rgba(#c3c4c7, 0.5);
+		padding-top: 2em;
+
+		&:first-of-type {
+			border-top: none;
+			padding-top: 0;
+		}
+	}
+}
+
+.woadmin-nav-tab-wrapper {
+	.nav-tab-active {
+		background-color: #fff;
+		border-bottom-color: #fff;
+	}
+}
+
+.woforms-input-group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem;
+
+	span {
+		white-space: nowrap;
+
+		input[type="radio"] + label,
+		input[type="checkbox"] + label {
+			margin-right: 0;
+		}
+	}
+}
+
+.woadmin-media-preview {
+	display: inline-block;
+	position: relative;
+	margin-top: 1.5rem;
+	max-width: 300px;
+
+	img {
+		max-width: 100%;
+		height: auto;
+		width: auto;
+	}
+
+	.woadmin-media-remove {
+		outline: none;
+		background: #fff;
+		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		cursor: pointer;
+		color: red;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		padding: 4px;
+		position: absolute;
+		right: -4px;
+		top: -4px;
+	}
+}

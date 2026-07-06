@@ -1,0 +1,22 @@
+{
+	"require": {
+		"wildoperation/wp-plugin-review-bug": "dev-master",
+		"typisttech/imposter-plugin": "^0.6.2",
+		"wildoperation/wo-admin-framework": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"PPS\\": "includes/"
+		}
+	},
+	"extra": {
+		"imposter": {
+			"namespace": "PPS\\Vendor"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"typisttech/imposter-plugin": true
+		}
+	}
+}

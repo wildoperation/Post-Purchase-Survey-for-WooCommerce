@@ -1,0 +1,1 @@
+{"version":3,"file":"/dist/js/color-picker.js","mappings":"AAAAA,OAAOC,UAAUC,OAAM,SAAUC,GAChCA,EAAE,yBAAyBC,eAC5B","sources":["webpack://wo/./src/js/color-picker.js"],"sourcesContent":["jQuery(document).ready(function ($) {\n\t$(\".woadmin-color-picker\").wpColorPicker();\n});\n"],"names":["jQuery","document","ready","$","wpColorPicker"],"sourceRoot":""}

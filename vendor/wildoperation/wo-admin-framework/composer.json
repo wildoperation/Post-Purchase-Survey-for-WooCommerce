@@ -1,0 +1,13 @@
+{
+	"name": "wildoperation/wo-admin-framework",
+	"description": "Helper framework for creating WordPress plugin admin pages and settings.",
+	"keywords": [
+		"wordpress"
+	],
+	"license": "GPL-2.0-or-later",
+	"autoload": {
+		"psr-4": {
+			"WOAdminFramework\\": "./"
+		}
+	}
+}
