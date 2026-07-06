@@ -304,7 +304,7 @@ class Front {
 			return;
 		}
 
-		wp_enqueue_style( Util::ns( 'survey' ), Plugin::assets_url() . 'css/front.css', array(), Plugin::version() );
+		wp_enqueue_style( Util::ns( 'survey' ), Plugin::assets_url() . 'css/front.css', array(), Plugin::asset_version( 'css/front.css' ) );
 
 		$handle = Util::ns( 'survey' );
 
@@ -312,7 +312,7 @@ class Front {
 			$handle,
 			Plugin::assets_url() . 'js/survey.js',
 			array(),
-			Plugin::version(),
+			Plugin::asset_version( 'js/survey.js' ),
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,

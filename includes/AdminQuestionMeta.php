@@ -94,7 +94,7 @@ class AdminQuestionMeta {
 
 		$this->meta()->repeater_enqueue();
 
-		wp_enqueue_style( Util::ns( 'admin' ), Plugin::assets_url() . 'css/admin.css', array( 'woadmin' ), Plugin::version() );
+		wp_enqueue_style( Util::ns( 'admin' ), Plugin::assets_url() . 'css/admin.css', array( 'woadmin' ), Plugin::asset_version( 'css/admin.css' ) );
 	}
 
 	/**

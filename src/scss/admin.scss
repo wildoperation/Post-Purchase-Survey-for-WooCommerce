@@ -53,15 +53,16 @@
 
 .pps-delete-responses {
 	margin-block-start: var(--pps-admin-gap-medium);
+}
 
-	&__button {
+/* Two selectors to out-rank .wp-core-ui .button. */
+.wp-core-ui .pps-delete-responses__button {
+	color: var(--pps-admin-danger-color);
+
+	&:hover,
+	&:focus {
 		color: var(--pps-admin-danger-color);
-
-		&:hover,
-		&:focus {
-			color: var(--pps-admin-danger-color);
-			border-color: var(--pps-admin-danger-color);
-		}
+		border-color: var(--pps-admin-danger-color);
 	}
 }
 
@@ -203,6 +204,7 @@
 }
 
 .pps-report-table {
+	margin-block-end: var(--pps-admin-gap-large);
 	max-width: var(--pps-admin-content-max-width);
 
 	&__num {

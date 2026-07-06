@@ -61,6 +61,27 @@ class Plugin {
 	}
 
 	/**
+	 * The cache-busting version for an enqueued asset.
+	 * Uses the file modification time during development (WP_DEBUG) so
+	 * rebuilt assets are never served from a stale browser cache.
+	 *
+	 * @param string $relative The asset path relative to the dist directory.
+	 *
+	 * @return string
+	 */
+	public static function asset_version( $relative ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			$path = self::assets_path() . ltrim( $relative, '/' );
+
+			if ( file_exists( $path ) ) {
+				return (string) filemtime( $path );
+			}
+		}
+
+		return self::version();
+	}
+
+	/**
 	 * The required capability for managing this plugin.
 	 *
 	 * @return string

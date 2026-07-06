@@ -389,7 +389,7 @@ class Admin extends WOAdmin {
 		}
 
 		$this->enqueue_woadmin_styles();
-		wp_enqueue_style( Util::ns( 'admin' ), Plugin::assets_url() . 'css/admin.css', array( 'woadmin' ), Plugin::version() );
+		wp_enqueue_style( Util::ns( 'admin' ), Plugin::assets_url() . 'css/admin.css', array( 'woadmin' ), Plugin::asset_version( 'css/admin.css' ) );
 
 		/**
 		 * The Survey page question picker.
@@ -401,7 +401,7 @@ class Admin extends WOAdmin {
 				$handle,
 				Plugin::assets_url() . 'js/survey-admin.js',
 				array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-ui-autocomplete' ),
-				Plugin::version(),
+				Plugin::asset_version( 'js/survey-admin.js' ),
 				array( 'in_footer' => true )
 			);
 			wp_enqueue_script( $handle );
