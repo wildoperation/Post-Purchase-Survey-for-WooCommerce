@@ -14,6 +14,7 @@ class AdminReports {
 	 */
 	public static function presets() {
 		return array(
+			'last1'      => __( 'Last 1 day', 'post-purchase-survey-for-woocommerce' ),
 			'last7'      => __( 'Last 7 days', 'post-purchase-survey-for-woocommerce' ),
 			'last30'     => __( 'Last 30 days', 'post-purchase-survey-for-woocommerce' ),
 			'last90'     => __( 'Last 90 days', 'post-purchase-survey-for-woocommerce' ),
@@ -45,6 +46,11 @@ class AdminReports {
 		$to_local   = '';
 
 		switch ( $preset ) {
+			case 'last1':
+				$from_local = $today;
+				$to_local   = $today;
+				break;
+
 			case 'last7':
 				$from_local = $now->modify( '-6 days' )->format( 'Y-m-d' );
 				$to_local   = $today;

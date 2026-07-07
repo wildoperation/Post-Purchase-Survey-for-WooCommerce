@@ -129,7 +129,7 @@ class AdminSurvey extends WOAdmin {
 			),
 			$this->sf()->get( 'position', 'survey' )
 		);
-		$this->sf()->message( '<em>' . esc_html__( 'The block-based order confirmation template always displays the survey in its "Additional information" area.', 'post-purchase-survey-for-woocommerce' ) . '</em>' );
+		$this->sf()->message( '<em>' . esc_html__( 'Works with both the classic and block-based order confirmation pages. If a customized template does not output the "above" position, the survey falls back to below the order details.', 'post-purchase-survey-for-woocommerce' ) . '</em>' );
 	}
 
 	/**

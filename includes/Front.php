@@ -26,7 +26,8 @@ class Front {
 
 	/**
 	 * Render the survey above the order details (woocommerce_before_thankyou).
-	 * This hook only fires on the classic order-received template.
+	 * The hook fires on the classic order-received template and in the block
+	 * Order Confirmation template's Status block.
 	 *
 	 * @param int $order_id The order ID.
 	 *
@@ -51,9 +52,9 @@ class Front {
 		$position = Survey::position();
 
 		/*
-		 * woocommerce_before_thankyou does not fire on the block-based order confirmation
-		 * template. If "above" was requested but never rendered, fall back to this hook so
-		 * the survey is never silently missing.
+		 * Safety net: if "above" was requested but woocommerce_before_thankyou never
+		 * fired (e.g. a customized order confirmation template without the Status
+		 * block), fall back to this hook so the survey is never silently missing.
 		 */
 		if ( $position === 'below' || ( $position === 'above' && ! did_action( 'woocommerce_before_thankyou' ) ) ) {
 			$this->render( $order_id );

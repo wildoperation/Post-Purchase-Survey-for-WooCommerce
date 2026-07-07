@@ -1,6 +1,6 @@
 === Post-Purchase Survey for WooCommerce ===
 Contributors: wildoperation, timstl
-Tags: woocommerce, survey, attribution, how did you hear about us, marketing
+Tags: woocommerce, survey, attribution, checkout, marketing
 Requires at least: 6.2
 Tested up to: 7.0
 Stable tag: 1.0.0
@@ -8,21 +8,21 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Ask customers "How did you hear about us?" on the WooCommerce thank-you page and report which channels drive your orders.
+Ask customers a survey question on the WooCommerce order confirmation page and create reports of responses.
 
 == Description ==
 
-Post-Purchase Survey for WooCommerce adds a simple, one-question attribution survey to your order-received (thank you) page. Customers answer in a single click, and you get a clear report of which marketing channels actually drive orders.
+Post-Purchase Survey for WooCommerce adds a simple, one-question attribution survey to your order-received (thank you) page. Customers submit with a single click, and you get a clear report of which marketing channels actually drive orders.
 
 Getting started takes about a minute: activation creates an example "How did you hear about us?" question (as a draft, so nothing is shown to customers yet). Review and publish it, select it on the Survey screen, and enable the survey when you're ready.
 
 **Features**
 
-* One-click survey on the order-received page — works with both classic checkout and the block-based checkout
+* Works with both classic checkout and the block-based checkout
 * Questions are managed like posts: draft, review, and publish when ready — only published questions are shown to customers
 * Fully editable answer options: add, edit, remove, reorder, and enable/disable each answer
 * Optional per-question "Other" answer with a free-text field and custom label
-* One response per order — after submitting, customers see a friendly thank-you message
+* One response per order — after submitting, customers see a friendly "thank you" message. Refreshing does not allow a second submission.
 * Works with JavaScript disabled (standard form fallback)
 * Reports with per-answer counts, percentages, total responses, and response rate
 * Date-range filtering with sensible presets
@@ -34,19 +34,19 @@ Getting started takes about a minute: activation creates an example "How did you
 **How it works**
 
 1. Create (or publish the example) question under Post-Purchase Survey → Questions, then select it and enable the survey on the Survey screen.
-2. A customer completes checkout and lands on the thank-you page, where the survey appears below the order details (position is adjustable).
+2. A customer completes checkout and lands on the "thank you" page, where the survey appears above or below the order details (position is adjustable).
 3. The customer picks an answer (or "Other" with a short note) and submits.
 4. The response is stored once per order, written to order meta, and counted under Post-Purchase Survey → Reports.
 
 **Extensible**
 
-Developers can customize behavior with filters and actions (`pps_should_display`, `pps_response_data`, `pps_after_response_saved`, and more). See the plugin's developer documentation for the full list.
+Developers can customize behavior with filters and actions (`pps_should_display`, `pps_response_data`, `pps_after_response_saved`, and more). See the plugin's readme.md for the full list.
 
 == Frequently Asked Questions ==
 
 = Where does the survey appear? =
 
-On the WooCommerce order-received (thank you) page, directly below the order details by default. You can switch it to appear above the order details on classic checkout. On the block-based order confirmation template, WooCommerce renders plugin content in its "Additional information" area.
+On the WooCommerce order-received (thank you) page, directly below the order details by default, or above them via the position setting. The setting works with both the classic order-received page and the block-based order confirmation template.
 
 = Why don't customers see the survey yet? =
 
@@ -54,7 +54,7 @@ The survey ships disabled so you can review it first. Three things must be true:
 
 = Can customers answer more than once? =
 
-No. Exactly one response is stored per order. If the customer reloads the page, they see your thank-you message instead of the form.
+No. Exactly one response is stored per order. If the customer reloads the page, they see your "thank you" message instead of the form.
 
 = Does it work with checkout blocks? =
 
@@ -79,7 +79,7 @@ Responses are tied to orders. The plugin registers a WordPress personal data exp
 == Screenshots ==
 
 1. The survey on the order-received page
-2. The thank-you message after responding
+2. The "thank you" message after responding
 3. Editing a question and its answer options
 4. The Survey screen with question selection
 5. Reports with counts, percentages, and response rate

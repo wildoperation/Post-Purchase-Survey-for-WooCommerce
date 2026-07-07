@@ -3,16 +3,9 @@
 /.github export-ignore
 /.claude export-ignore
 /node_modules export-ignore
-/src export-ignore
 
 .gitignore export-ignore
 .editorconfig export-ignore
 .gitattributes export-ignore
 .DS_Store export-ignore
-.browserslistrc export-ignore
-webpack.mix.js export-ignore
-mix-manifest.json export-ignore
-package.json export-ignore
-package-lock.json export-ignore
-readme.md export-ignore
 *.zip export-ignore
