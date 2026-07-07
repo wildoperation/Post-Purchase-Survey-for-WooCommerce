@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Post-Purchase Survey for WooCommerce
  * Plugin URI:        https://wildoperation.com
- * Description:       Ask customers "How did you hear about us?" on the WooCommerce thank-you page and report which channels drive your orders.
+ * Description:       Ask customers a survey question on the WooCommerce order confirmation page and create reports of responses.
  * Version:           1.0.0
  * Author:            Wild Operation
  * Author URI:        https://wildoperation.com
