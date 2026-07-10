@@ -1,8 +1,8 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
-use PPS\Vendor\WOAdminFramework\WOAdmin;
-use PPS\Vendor\WOAdminFramework\WOSettings;
+use PPSFW\Vendor\WOAdminFramework\WOAdmin;
+use PPSFW\Vendor\WOAdminFramework\WOSettings;
 
 /**
  * The Survey admin page: enable toggle, question selection, and the "Other" option.
@@ -23,7 +23,7 @@ class AdminSurvey extends WOAdmin {
 	 */
 	public function hooks() {
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
-		add_action( 'wp_ajax_pps_search_questions', array( $this, 'ajax_search_questions' ) );
+		add_action( 'wp_ajax_ppsfw_search_questions', array( $this, 'ajax_search_questions' ) );
 
 		add_filter(
 			'option_page_capability_' . $this->sf()->key( 'survey' ),
@@ -92,21 +92,21 @@ class AdminSurvey extends WOAdmin {
 	 *
 	 * @return void
 	 */
-	public function settings_callback_pps_active_survey() {}
+	public function settings_callback_ppsfw_active_survey() {}
 
 	/**
 	 * Call back for the display settings section.
 	 *
 	 * @return void
 	 */
-	public function settings_callback_pps_display() {}
+	public function settings_callback_ppsfw_display() {}
 
 	/**
 	 * Enable survey field.
 	 *
 	 * @return void
 	 */
-	public function field_pps_enabled() {
+	public function field_ppsfw_enabled() {
 		$id = array( $this->sf()->key( 'survey' ) => 'enabled' );
 
 		$this->sf()->checkbox( $id, $this->sf()->get( 'enabled', 'survey' ) );
@@ -118,7 +118,7 @@ class AdminSurvey extends WOAdmin {
 	 *
 	 * @return void
 	 */
-	public function field_pps_position() {
+	public function field_ppsfw_position() {
 		$id = array( $this->sf()->key( 'survey' ) => 'position' );
 
 		$this->sf()->select(
@@ -137,7 +137,7 @@ class AdminSurvey extends WOAdmin {
 	 *
 	 * @return void
 	 */
-	public function field_pps_thank_you() {
+	public function field_ppsfw_thank_you() {
 		$id = array( $this->sf()->key( 'survey' ) => 'thank_you' );
 
 		$this->sf()->input(
@@ -160,25 +160,25 @@ class AdminSurvey extends WOAdmin {
 	 *
 	 * @return void
 	 */
-	public function field_pps_questions() {
+	public function field_ppsfw_questions() {
 		$settings_key = $this->sf()->key( 'survey' );
 		$selected     = Survey::selected_questions();
 		$max          = Survey::max_questions();
 
 		?>
-		<div class="pps-question-picker" data-max="<?php echo esc_attr( $max ); ?>">
-			<ul class="pps-question-picker__selected">
+		<div class="ppsfw-question-picker" data-max="<?php echo esc_attr( $max ); ?>">
+			<ul class="ppsfw-question-picker__selected">
 				<?php foreach ( $selected as $question ) : ?>
 					<?php $this->selected_question_row( $settings_key, $question ); ?>
 				<?php endforeach; ?>
 			</ul>
 
-			<p class="pps-question-picker__search-wrap">
-				<label class="screen-reader-text" for="pps-question-search"><?php esc_html_e( 'Search questions', 'post-purchase-survey-for-woocommerce' ); ?></label>
-				<input type="text" id="pps-question-search" class="pps-question-picker__search regular-text" placeholder="<?php esc_attr_e( 'Search questions&hellip;', 'post-purchase-survey-for-woocommerce' ); ?>" />
+			<p class="ppsfw-question-picker__search-wrap">
+				<label class="screen-reader-text" for="ppsfw-question-search"><?php esc_html_e( 'Search questions', 'post-purchase-survey-for-woocommerce' ); ?></label>
+				<input type="text" id="ppsfw-question-search" class="ppsfw-question-picker__search regular-text" placeholder="<?php esc_attr_e( 'Search questions&hellip;', 'post-purchase-survey-for-woocommerce' ); ?>" />
 			</p>
 
-			<p class="description pps-question-picker__max-note" <?php echo count( $selected ) < $max ? 'style="display:none"' : ''; ?>>
+			<p class="description ppsfw-question-picker__max-note" <?php echo count( $selected ) < $max ? 'style="display:none"' : ''; ?>>
 				<?php
 				echo esc_html(
 					sprintf(
@@ -207,15 +207,15 @@ class AdminSurvey extends WOAdmin {
 		$status_labels = self::status_labels();
 
 		?>
-		<li class="pps-question-picker__question" data-id="<?php echo esc_attr( $question['id'] ); ?>">
+		<li class="ppsfw-question-picker__question" data-id="<?php echo esc_attr( $question['id'] ); ?>">
 			<input type="hidden" name="<?php echo esc_attr( $settings_key ); ?>[question_ids][]" value="<?php echo esc_attr( $question['id'] ); ?>" />
-			<span class="pps-question-picker__handle dashicons dashicons-menu" aria-hidden="true"></span>
-			<span class="pps-question-picker__title"><?php echo esc_html( $question['text'] !== '' ? $question['text'] : __( '(no title)', 'post-purchase-survey-for-woocommerce' ) ); ?></span>
+			<span class="ppsfw-question-picker__handle dashicons dashicons-menu" aria-hidden="true"></span>
+			<span class="ppsfw-question-picker__title"><?php echo esc_html( $question['text'] !== '' ? $question['text'] : __( '(no title)', 'post-purchase-survey-for-woocommerce' ) ); ?></span>
 			<?php if ( $question['status'] !== 'publish' ) : ?>
-				<span class="pps-badge pps-badge--<?php echo esc_attr( $question['status'] ); ?>"><?php echo esc_html( isset( $status_labels[ $question['status'] ] ) ? $status_labels[ $question['status'] ] : $question['status'] ); ?></span>
+				<span class="ppsfw-badge ppsfw-badge--<?php echo esc_attr( $question['status'] ); ?>"><?php echo esc_html( isset( $status_labels[ $question['status'] ] ) ? $status_labels[ $question['status'] ] : $question['status'] ); ?></span>
 			<?php endif; ?>
-			<a href="<?php echo esc_url( get_edit_post_link( $question['id'] ) ); ?>" class="pps-question-picker__edit"><?php esc_html_e( 'Edit', 'post-purchase-survey-for-woocommerce' ); ?></a>
-			<button type="button" class="button-link-delete pps-question-picker__remove"><?php esc_html_e( 'Remove', 'post-purchase-survey-for-woocommerce' ); ?></button>
+			<a href="<?php echo esc_url( get_edit_post_link( $question['id'] ) ); ?>" class="ppsfw-question-picker__edit"><?php esc_html_e( 'Edit', 'post-purchase-survey-for-woocommerce' ); ?></a>
+			<button type="button" class="button-link-delete ppsfw-question-picker__remove"><?php esc_html_e( 'Remove', 'post-purchase-survey-for-woocommerce' ); ?></button>
 		</li>
 		<?php
 	}
@@ -240,7 +240,7 @@ class AdminSurvey extends WOAdmin {
 	 *
 	 * @return array
 	 */
-	public function sanitize_pps_survey( $input ) {
+	public function sanitize_ppsfw_survey( $input ) {
 		if ( ! current_user_can( Plugin::capability() ) ) {
 			wp_die();
 		}
@@ -287,7 +287,7 @@ class AdminSurvey extends WOAdmin {
 	 * @return void
 	 */
 	public function ajax_search_questions() {
-		$this->authorize_ajax_action( 'pps_admin', 'nonce', Plugin::capability() );
+		$this->authorize_ajax_action( 'ppsfw_admin', 'nonce', Plugin::capability() );
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verified in authorize_ajax_action().
 		$term = isset( $_GET['q'] ) ? sanitize_text_field( wp_unslash( $_GET['q'] ) ) : '';

@@ -1,5 +1,5 @@
 <?php
-namespace PPS\Vendor\WOAdminFramework;
+namespace PPSFW\Vendor\WOAdminFramework;
 
 /**
  * General admin helper classes to be extended by a plugin's Admin class.

@@ -9,5 +9,5 @@ return array(
     'WOAdminFramework\\' => array($vendorDir . '/wildoperation/wo-admin-framework'),
     'TypistTech\\Imposter\\Plugin\\' => array($vendorDir . '/typisttech/imposter-plugin/src'),
     'TypistTech\\Imposter\\' => array($vendorDir . '/typisttech/imposter/src'),
-    'PPS\\' => array($baseDir . '/includes'),
+    'PPSFW\\' => array($baseDir . '/includes'),
 );

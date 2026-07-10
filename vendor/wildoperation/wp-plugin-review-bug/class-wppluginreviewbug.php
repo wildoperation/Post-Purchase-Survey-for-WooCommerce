@@ -7,7 +7,7 @@
  * @package WPPluginReviewBug
  */
 
-namespace PPS\Vendor\WOWPRB;
+namespace PPSFW\Vendor\WOWPRB;
 
 /**
  * Handle review banner for a WordPress plugin.

@@ -1,9 +1,9 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * The survey model.
- * Questions are pps_question posts (title = question, answers in post meta).
+ * Questions are ppsfw_question posts (title = question, answers in post meta).
  * The survey configuration (enabled, selected questions, "Other" option) is an option group.
  */
 class Survey {
@@ -34,7 +34,7 @@ class Survey {
 		 *
 		 * @param int $max The maximum number of questions.
 		 */
-		return max( 1, (int) apply_filters( 'pps_max_questions', 1 ) );
+		return max( 1, (int) apply_filters( 'ppsfw_max_questions', 1 ) );
 	}
 
 	/**
@@ -217,7 +217,7 @@ class Survey {
 			 * @param array $options Answer options: arrays of value, label, enabled.
 			 * @param int   $question_id The question (post) ID.
 			 */
-			'options'       => apply_filters( 'pps_answer_options', $options, $post->ID ),
+			'options'       => apply_filters( 'ppsfw_answer_options', $options, $post->ID ),
 			'other_enabled' => Util::truthy( get_post_meta( $post->ID, Plugin::meta_key_question_other(), true ) ),
 			'other_label'   => trim( $other_label ),
 		);
@@ -274,7 +274,7 @@ class Survey {
 		 *
 		 * @param array $questions Question arrays keyed by question (post) ID.
 		 */
-		return apply_filters( 'pps_get_questions', $questions );
+		return apply_filters( 'ppsfw_get_questions', $questions );
 	}
 
 	/**

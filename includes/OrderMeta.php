@@ -1,5 +1,5 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * Displays the customer's survey answer on the single-order admin screen.
@@ -93,16 +93,16 @@ class OrderMeta {
 		}
 
 		?>
-		<div class="pps-order-response">
-			<p class="pps-order-question"><strong><?php echo esc_html( $question_text ); ?></strong></p>
+		<div class="ppsfw-order-response">
+			<p class="ppsfw-order-question"><strong><?php echo esc_html( $question_text ); ?></strong></p>
 
-			<p class="pps-order-answer"><?php echo esc_html( $response->answer_label ); ?></p>
+			<p class="ppsfw-order-answer"><?php echo esc_html( $response->answer_label ); ?></p>
 
 			<?php if ( $response->is_other && $response->other_text ) : ?>
-				<p class="pps-order-other"><?php echo esc_html( $response->other_text ); ?></p>
+				<p class="ppsfw-order-other"><?php echo esc_html( $response->other_text ); ?></p>
 			<?php endif; ?>
 
-			<p class="pps-order-date">
+			<p class="ppsfw-order-date">
 				<em>
 					<?php
 					echo esc_html(

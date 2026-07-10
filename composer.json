@@ -6,12 +6,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"PPS\\": "includes/"
+			"PPSFW\\": "includes/"
 		}
 	},
 	"extra": {
 		"imposter": {
-			"namespace": "PPS\\Vendor"
+			"namespace": "PPSFW\\Vendor"
 		}
 	},
 	"config": {

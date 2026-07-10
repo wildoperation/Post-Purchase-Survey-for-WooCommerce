@@ -1,5 +1,5 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * WordPress personal-data exporter and eraser for survey responses.

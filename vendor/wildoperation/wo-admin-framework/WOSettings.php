@@ -1,7 +1,7 @@
 <?php
-namespace PPS\Vendor\WOAdminFramework;
+namespace PPSFW\Vendor\WOAdminFramework;
 
-use PPS\Vendor\WOAdminFramework\WOOptions;
+use PPSFW\Vendor\WOAdminFramework\WOOptions;
 
 /**
  * Class for working with the Settings API.

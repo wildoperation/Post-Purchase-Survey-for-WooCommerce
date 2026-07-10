@@ -1,8 +1,8 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
-use PPS\Vendor\WOAdminFramework\WOAdmin;
-use PPS\Vendor\WOAdminFramework\WOSettings;
+use PPSFW\Vendor\WOAdminFramework\WOAdmin;
+use PPSFW\Vendor\WOAdminFramework\WOSettings;
 
 /**
  * Admin class that sets up the plugin menu, pages, notices, and display settings.
@@ -40,7 +40,8 @@ class Admin extends WOAdmin {
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'admin_notices', array( $this, 'survey_disabled_notice' ) );
-		add_filter( 'plugin_action_links_' . PPS_PLUGIN_BASENAME, array( $this, 'plugin_action_links' ) );
+		add_action( 'admin_post_ppsfw_dismiss_notice', array( $this, 'dismiss_notice' ) );
+		add_filter( 'plugin_action_links_' . PPSFW_PLUGIN_BASENAME, array( $this, 'plugin_action_links' ) );
 
 		/**
 		 * Settings are saved through options.php, which defaults to manage_options.
@@ -293,7 +294,18 @@ class Admin extends WOAdmin {
 	}
 
 	/**
-	 * Show an admin notice on WooCommerce and plugin screens while the survey is disabled.
+	 * The user meta key recording that a user dismissed the survey-disabled notice.
+	 *
+	 * @return string
+	 */
+	public static function notice_dismissed_meta_key() {
+		return Plugin::ns() . '_disabled_notice_dismissed';
+	}
+
+	/**
+	 * Show a dismissible admin notice on WooCommerce and plugin screens while
+	 * the survey is disabled. Once a user dismisses it, it stays dismissed for
+	 * that user; the Survey screen itself still shows the current state.
 	 *
 	 * @return void
 	 */
@@ -302,18 +314,48 @@ class Admin extends WOAdmin {
 			return;
 		}
 
+		if ( get_user_meta( get_current_user_id(), self::notice_dismissed_meta_key(), true ) ) {
+			return;
+		}
+
 		if ( ! $this->is_screen( $this->notice_screen_ids() ) ) {
 			return;
 		}
+
+		$dismiss_url = wp_nonce_url(
+			add_query_arg( 'action', 'ppsfw_dismiss_notice', admin_url( 'admin-post.php' ) ),
+			'ppsfw_dismiss_notice'
+		);
 
 		?>
 		<div class="notice notice-warning">
 			<p>
 				<?php esc_html_e( 'The Post-Purchase Survey is not currently enabled, so customers will not see it after checkout.', 'post-purchase-survey-for-woocommerce' ); ?>
 				<a href="<?php echo esc_url( self::survey_admin_url() ); ?>"><?php esc_html_e( 'Enable the survey', 'post-purchase-survey-for-woocommerce' ); ?></a>
+				<a href="<?php echo esc_url( $dismiss_url ); ?>" class="ppsfw-notice-dismiss"><?php esc_html_e( 'Dismiss this notice', 'post-purchase-survey-for-woocommerce' ); ?></a>
 			</p>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Record that the current user dismissed the survey-disabled notice.
+	 *
+	 * @return void
+	 */
+	public function dismiss_notice() {
+		if ( ! current_user_can( Plugin::capability() ) ) {
+			wp_die( esc_html__( 'You are not allowed to do that.', 'post-purchase-survey-for-woocommerce' ) );
+		}
+
+		check_admin_referer( 'ppsfw_dismiss_notice' );
+
+		update_user_meta( get_current_user_id(), self::notice_dismissed_meta_key(), 1 );
+
+		$redirect = wp_get_referer();
+
+		wp_safe_redirect( $redirect ? $redirect : admin_url() );
+		exit;
 	}
 
 	/**
@@ -410,14 +452,14 @@ class Admin extends WOAdmin {
 				$handle,
 				array(
 					'ajax_url'   => admin_url( 'admin-ajax.php' ),
-					'nonce'      => wp_create_nonce( 'pps_admin' ),
+					'nonce'      => wp_create_nonce( 'ppsfw_admin' ),
 					'field_name' => $this->sf()->key( 'survey' ) . '[question_ids][]',
 					'i18n'       => array(
 						'remove' => __( 'Remove', 'post-purchase-survey-for-woocommerce' ),
 						'edit'   => __( 'Edit', 'post-purchase-survey-for-woocommerce' ),
 					),
 				),
-				'pps_survey_admin'
+				'ppsfw_survey_admin'
 			);
 		}
 	}
@@ -427,14 +469,14 @@ class Admin extends WOAdmin {
 	 *
 	 * @return void
 	 */
-	public function settings_callback_pps_data() {}
+	public function settings_callback_ppsfw_data() {}
 
 	/**
 	 * Delete data on uninstall field.
 	 *
 	 * @return void
 	 */
-	public function field_pps_delete_data() {
+	public function field_ppsfw_delete_data() {
 		$id = array( $this->sf()->key( 'settings' ) => 'delete_data' );
 
 		$this->sf()->checkbox( $id, $this->sf()->get( 'delete_data', 'settings' ) );
@@ -448,7 +490,7 @@ class Admin extends WOAdmin {
 	 *
 	 * @return array
 	 */
-	public function sanitize_pps_settings( $input ) {
+	public function sanitize_ppsfw_settings( $input ) {
 		if ( ! current_user_can( Plugin::capability() ) ) {
 			wp_die();
 		}

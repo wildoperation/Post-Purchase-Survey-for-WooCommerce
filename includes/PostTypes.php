@@ -1,5 +1,5 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * Registers the survey question post type.

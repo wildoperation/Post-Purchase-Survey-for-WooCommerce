@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitefb374ba3b76d83994536be56bf904c2
+class ComposerStaticInit5202e5047a7f8951c149514bd8353c10
 {
     public static $files = array (
         '23084107b6d1f20643b63bd5e97de6aa' => __DIR__ . '/..' . '/wildoperation/wp-plugin-review-bug/class-wppluginreviewbug.php',
@@ -22,7 +22,7 @@ class ComposerStaticInitefb374ba3b76d83994536be56bf904c2
         ),
         'P' => 
         array (
-            'PPS\\' => 4,
+            'PPSFW\\' => 6,
         ),
     );
 
@@ -39,7 +39,7 @@ class ComposerStaticInitefb374ba3b76d83994536be56bf904c2
         array (
             0 => __DIR__ . '/..' . '/typisttech/imposter/src',
         ),
-        'PPS\\' => 
+        'PPSFW\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
@@ -47,27 +47,27 @@ class ComposerStaticInitefb374ba3b76d83994536be56bf904c2
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'PPS\\Admin' => __DIR__ . '/../..' . '/includes/Admin.php',
-        'PPS\\AdminQuestionMeta' => __DIR__ . '/../..' . '/includes/AdminQuestionMeta.php',
-        'PPS\\AdminReports' => __DIR__ . '/../..' . '/includes/AdminReports.php',
-        'PPS\\AdminSurvey' => __DIR__ . '/../..' . '/includes/AdminSurvey.php',
-        'PPS\\Front' => __DIR__ . '/../..' . '/includes/Front.php',
-        'PPS\\Install' => __DIR__ . '/../..' . '/includes/Install.php',
-        'PPS\\Options' => __DIR__ . '/../..' . '/includes/Options.php',
-        'PPS\\OrderMeta' => __DIR__ . '/../..' . '/includes/OrderMeta.php',
-        'PPS\\Plugin' => __DIR__ . '/../..' . '/includes/Plugin.php',
-        'PPS\\PostTypes' => __DIR__ . '/../..' . '/includes/PostTypes.php',
-        'PPS\\Privacy' => __DIR__ . '/../..' . '/includes/Privacy.php',
-        'PPS\\ResponseRepository' => __DIR__ . '/../..' . '/includes/ResponseRepository.php',
-        'PPS\\Survey' => __DIR__ . '/../..' . '/includes/Survey.php',
-        'PPS\\Util' => __DIR__ . '/../..' . '/includes/Util.php',
-        'PPS\\Vendor\\WOAdminFramework\\WOAdmin' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOAdmin.php',
-        'PPS\\Vendor\\WOAdminFramework\\WOForms' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOForms.php',
-        'PPS\\Vendor\\WOAdminFramework\\WOMeta' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOMeta.php',
-        'PPS\\Vendor\\WOAdminFramework\\WOOptions' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOOptions.php',
-        'PPS\\Vendor\\WOAdminFramework\\WOSettings' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOSettings.php',
-        'PPS\\Vendor\\WOAdminFramework\\WOUtilities' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOUtilities.php',
-        'PPS\\Vendor\\WOWPRB\\WPPluginReviewBug' => __DIR__ . '/..' . '/wildoperation/wp-plugin-review-bug/class-wppluginreviewbug.php',
+        'PPSFW\\Admin' => __DIR__ . '/../..' . '/includes/Admin.php',
+        'PPSFW\\AdminQuestionMeta' => __DIR__ . '/../..' . '/includes/AdminQuestionMeta.php',
+        'PPSFW\\AdminReports' => __DIR__ . '/../..' . '/includes/AdminReports.php',
+        'PPSFW\\AdminSurvey' => __DIR__ . '/../..' . '/includes/AdminSurvey.php',
+        'PPSFW\\Front' => __DIR__ . '/../..' . '/includes/Front.php',
+        'PPSFW\\Install' => __DIR__ . '/../..' . '/includes/Install.php',
+        'PPSFW\\Options' => __DIR__ . '/../..' . '/includes/Options.php',
+        'PPSFW\\OrderMeta' => __DIR__ . '/../..' . '/includes/OrderMeta.php',
+        'PPSFW\\Plugin' => __DIR__ . '/../..' . '/includes/Plugin.php',
+        'PPSFW\\PostTypes' => __DIR__ . '/../..' . '/includes/PostTypes.php',
+        'PPSFW\\Privacy' => __DIR__ . '/../..' . '/includes/Privacy.php',
+        'PPSFW\\ResponseRepository' => __DIR__ . '/../..' . '/includes/ResponseRepository.php',
+        'PPSFW\\Survey' => __DIR__ . '/../..' . '/includes/Survey.php',
+        'PPSFW\\Util' => __DIR__ . '/../..' . '/includes/Util.php',
+        'PPSFW\\Vendor\\WOAdminFramework\\WOAdmin' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOAdmin.php',
+        'PPSFW\\Vendor\\WOAdminFramework\\WOForms' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOForms.php',
+        'PPSFW\\Vendor\\WOAdminFramework\\WOMeta' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOMeta.php',
+        'PPSFW\\Vendor\\WOAdminFramework\\WOOptions' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOOptions.php',
+        'PPSFW\\Vendor\\WOAdminFramework\\WOSettings' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOSettings.php',
+        'PPSFW\\Vendor\\WOAdminFramework\\WOUtilities' => __DIR__ . '/..' . '/wildoperation/wo-admin-framework/WOUtilities.php',
+        'PPSFW\\Vendor\\WOWPRB\\WPPluginReviewBug' => __DIR__ . '/..' . '/wildoperation/wp-plugin-review-bug/class-wppluginreviewbug.php',
         'TypistTech\\Imposter\\ArrayUtil' => __DIR__ . '/..' . '/typisttech/imposter/src/ArrayUtil.php',
         'TypistTech\\Imposter\\Config' => __DIR__ . '/..' . '/typisttech/imposter/src/Config.php',
         'TypistTech\\Imposter\\ConfigCollection' => __DIR__ . '/..' . '/typisttech/imposter/src/ConfigCollection.php',
@@ -93,9 +93,9 @@ class ComposerStaticInitefb374ba3b76d83994536be56bf904c2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitefb374ba3b76d83994536be56bf904c2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitefb374ba3b76d83994536be56bf904c2::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitefb374ba3b76d83994536be56bf904c2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5202e5047a7f8951c149514bd8353c10::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5202e5047a7f8951c149514bd8353c10::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5202e5047a7f8951c149514bd8353c10::$classMap;
 
         }, null, ClassLoader::class);
     }

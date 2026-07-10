@@ -14,11 +14,11 @@
 	}
 
 	onReady(function () {
-		if (typeof pps_survey === "undefined" || !pps_survey.ajax_url) {
+		if (typeof ppsfw_survey === "undefined" || !ppsfw_survey.ajax_url) {
 			return;
 		}
 
-		document.querySelectorAll(".pps-survey__form").forEach(function (form) {
+		document.querySelectorAll(".ppsfw-survey__form").forEach(function (form) {
 			let submitting = false;
 
 			form.addEventListener("submit", function (e) {
@@ -30,9 +30,9 @@
 
 				submitting = true;
 
-				const container = form.closest(".pps-survey");
-				const button = form.querySelector(".pps-survey__submit");
-				const error = form.querySelector(".pps-survey__error");
+				const container = form.closest(".ppsfw-survey");
+				const button = form.querySelector(".ppsfw-survey__submit");
+				const error = form.querySelector(".ppsfw-survey__error");
 
 				if (button) {
 					button.disabled = true;
@@ -43,7 +43,7 @@
 				}
 
 				window
-					.fetch(pps_survey.ajax_url, {
+					.fetch(ppsfw_survey.ajax_url, {
 						method: "POST",
 						credentials: "same-origin",
 						body: new FormData(form),

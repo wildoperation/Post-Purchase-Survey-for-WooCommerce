@@ -4,39 +4,39 @@
  * All spacing and color decisions are exposed as prefixed CSS variables so
  * theme developers can override them without fighting specificity, e.g.:
  *
- *   .pps-survey { --pps-survey-border-color: #333; --pps-survey-radius: 0; }
+ *   .ppsfw-survey { --ppsfw-survey-border-color: #333; --ppsfw-survey-radius: 0; }
  *
  * Kept minimal so themes control typography and colors; logical properties for RTL.
  */
 :root {
-	--pps-survey-margin-block: 2em;
-	--pps-survey-padding: 1.25em 1.5em;
-	--pps-survey-border-width: 1px;
-	--pps-survey-border-color: rgba(0, 0, 0, 0.15);
-	--pps-survey-radius: 4px;
-	--pps-survey-background: transparent;
+	--ppsfw-survey-margin-block: 2em;
+	--ppsfw-survey-padding: 1.25em 1.5em;
+	--ppsfw-survey-border-width: 1px;
+	--ppsfw-survey-border-color: rgba(0, 0, 0, 0.15);
+	--ppsfw-survey-radius: 4px;
+	--ppsfw-survey-background: transparent;
 
-	--pps-question-font-weight: 600;
-	--pps-question-spacing: 0.75em;
+	--ppsfw-question-font-weight: 600;
+	--ppsfw-question-spacing: 0.75em;
 
-	--pps-options-spacing: 1em;
-	--pps-option-spacing: 0.5em;
-	--pps-option-input-gap: 0.4em;
+	--ppsfw-options-spacing: 1em;
+	--ppsfw-option-spacing: 0.5em;
+	--ppsfw-option-input-gap: 0.4em;
 
-	--pps-other-indent: 1.6em;
-	--pps-other-spacing: 0.4em;
-	--pps-other-input-max-width: 320px;
+	--ppsfw-other-indent: 1.6em;
+	--ppsfw-other-spacing: 0.4em;
+	--ppsfw-other-input-max-width: 320px;
 
-	--pps-error-color: #b32d2e;
-	--pps-error-gap: 1em;
+	--ppsfw-error-color: #b32d2e;
+	--ppsfw-error-gap: 1em;
 }
 
-.pps-survey {
-	margin-block: var(--pps-survey-margin-block);
-	padding: var(--pps-survey-padding);
-	background: var(--pps-survey-background);
-	border: var(--pps-survey-border-width) solid var(--pps-survey-border-color);
-	border-radius: var(--pps-survey-radius);
+.ppsfw-survey {
+	margin-block: var(--ppsfw-survey-margin-block);
+	padding: var(--ppsfw-survey-padding);
+	background: var(--ppsfw-survey-background);
+	border: var(--ppsfw-survey-border-width) solid var(--ppsfw-survey-border-color);
+	border-radius: var(--ppsfw-survey-radius);
 
 	&__fieldset {
 		border: 0;
@@ -46,33 +46,33 @@
 
 	&__question {
 		display: block;
-		font-weight: var(--pps-question-font-weight);
-		margin-block-end: var(--pps-question-spacing);
+		font-weight: var(--ppsfw-question-font-weight);
+		margin-block-end: var(--ppsfw-question-spacing);
 		padding: 0;
 	}
 
 	&__options {
 		list-style: none;
-		margin: 0 0 var(--pps-options-spacing);
+		margin: 0 0 var(--ppsfw-options-spacing);
 		padding: 0;
 	}
 
 	&__option {
-		margin-block-end: var(--pps-option-spacing);
+		margin-block-end: var(--ppsfw-option-spacing);
 
 		input[type="radio"] {
-			margin-inline-end: var(--pps-option-input-gap);
+			margin-inline-end: var(--ppsfw-option-input-gap);
 		}
 	}
 
 	&__other-text {
 		display: none;
-		margin-inline-start: var(--pps-other-indent);
-		margin-block-start: var(--pps-other-spacing);
+		margin-inline-start: var(--ppsfw-other-indent);
+		margin-block-start: var(--ppsfw-other-spacing);
 
 		input[type="text"] {
 			width: 100%;
-			max-width: var(--pps-other-input-max-width);
+			max-width: var(--ppsfw-other-input-max-width);
 		}
 	}
 
@@ -82,12 +82,12 @@
 
 	&__error {
 		display: none;
-		margin-inline-start: var(--pps-error-gap);
+		margin-inline-start: var(--ppsfw-error-gap);
 	}
 
 	&__error:not(:empty) {
 		display: inline-block;
-		color: var(--pps-error-color);
+		color: var(--ppsfw-error-color);
 	}
 
 	&--thanks p {

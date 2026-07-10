@@ -4,21 +4,21 @@
 jQuery(document).ready(function ($) {
 	"use strict";
 
-	if (typeof pps_survey_admin === "undefined") {
+	if (typeof ppsfw_survey_admin === "undefined") {
 		return;
 	}
 
-	const $picker = $(".pps-question-picker");
+	const $picker = $(".ppsfw-question-picker");
 
 	if (!$picker.length) {
 		return;
 	}
 
 	const max = parseInt($picker.data("max"), 10) || 1;
-	const $list = $picker.find(".pps-question-picker__selected");
-	const $search = $picker.find(".pps-question-picker__search");
-	const $searchWrap = $picker.find(".pps-question-picker__search-wrap");
-	const $maxNote = $picker.find(".pps-question-picker__max-note");
+	const $list = $picker.find(".ppsfw-question-picker__selected");
+	const $search = $picker.find(".ppsfw-question-picker__search");
+	const $searchWrap = $picker.find(".ppsfw-question-picker__search-wrap");
+	const $maxNote = $picker.find(".ppsfw-question-picker__max-note");
 
 	function selectedIds() {
 		return $list
@@ -46,22 +46,22 @@ jQuery(document).ready(function ($) {
 		}
 
 		let html =
-			'<li class="pps-question-picker__question" data-id="' +
+			'<li class="ppsfw-question-picker__question" data-id="' +
 			parseInt(item.id, 10) +
 			'">' +
 			'<input type="hidden" name="' +
-			pps_survey_admin.field_name +
+			ppsfw_survey_admin.field_name +
 			'" value="' +
 			parseInt(item.id, 10) +
 			'" />' +
-			'<span class="pps-question-picker__handle dashicons dashicons-menu" aria-hidden="true"></span>' +
-			'<span class="pps-question-picker__title">' +
+			'<span class="ppsfw-question-picker__handle dashicons dashicons-menu" aria-hidden="true"></span>' +
+			'<span class="ppsfw-question-picker__title">' +
 			escapeHtml(item.title) +
 			"</span>";
 
 		if (item.status !== "publish") {
 			html +=
-				'<span class="pps-badge pps-badge--' +
+				'<span class="ppsfw-badge ppsfw-badge--' +
 				escapeHtml(item.status) +
 				'">' +
 				escapeHtml(item.status_label) +
@@ -72,28 +72,28 @@ jQuery(document).ready(function ($) {
 			html +=
 				'<a href="' +
 				escapeHtml(item.edit_url) +
-				'" class="pps-question-picker__edit">' +
-				escapeHtml(pps_survey_admin.i18n.edit) +
+				'" class="ppsfw-question-picker__edit">' +
+				escapeHtml(ppsfw_survey_admin.i18n.edit) +
 				"</a>";
 		}
 
 		html +=
-			'<button type="button" class="button-link-delete pps-question-picker__remove">' +
-			escapeHtml(pps_survey_admin.i18n.remove) +
+			'<button type="button" class="button-link-delete ppsfw-question-picker__remove">' +
+			escapeHtml(ppsfw_survey_admin.i18n.remove) +
 			"</button></li>";
 
 		$list.append(html);
 		refreshState();
 	}
 
-	$list.on("click", ".pps-question-picker__remove", function (e) {
+	$list.on("click", ".ppsfw-question-picker__remove", function (e) {
 		e.preventDefault();
 		$(this).closest("li").remove();
 		refreshState();
 	});
 
 	$list.sortable({
-		handle: ".pps-question-picker__handle",
+		handle: ".ppsfw-question-picker__handle",
 		axis: "y",
 	});
 
@@ -102,10 +102,10 @@ jQuery(document).ready(function ($) {
 		delay: 250,
 		source: function (request, response) {
 			$.getJSON(
-				pps_survey_admin.ajax_url,
+				ppsfw_survey_admin.ajax_url,
 				{
-					action: "pps_search_questions",
-					nonce: pps_survey_admin.nonce,
+					action: "ppsfw_search_questions",
+					nonce: ppsfw_survey_admin.nonce,
 					q: request.term,
 				},
 				function (json) {

@@ -3,7 +3,7 @@
  * Plugin Name:       Post-Purchase Survey for WooCommerce
  * Plugin URI:        https://github.com/wildoperation/Post-Purchase-Survey-for-WooCommerce
  * Description:       Ask customers a survey question on the WooCommerce order confirmation page and create reports of responses.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Wild Operation
  * Author URI:        https://wildoperation.com
  * License:           GPL-2.0-or-later
@@ -18,7 +18,7 @@
  * @package WordPress
  * @subpackage Post-Purchase Survey for WooCommerce
  * @since 1.0.0
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 /* Abort! */
@@ -26,15 +26,15 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'PPS_LOADED', true );
-define( 'PPS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'PPS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'PPS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+define( 'PPSFW_LOADED', true );
+define( 'PPSFW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'PPSFW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'PPSFW_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
  * Load
  */
-require PPS_PLUGIN_DIR . 'vendor/autoload.php';
+require PPSFW_PLUGIN_DIR . 'vendor/autoload.php';
 
 /**
  * Activation
@@ -42,7 +42,7 @@ require PPS_PLUGIN_DIR . 'vendor/autoload.php';
 register_activation_hook(
 	__FILE__,
 	function () {
-		PPS\Install::activate();
+		PPSFW\Install::activate();
 	}
 );
 
@@ -70,7 +70,7 @@ add_action(
 			return;
 		}
 
-		new \PPS\Vendor\WOWPRB\WPPluginReviewBug(
+		new \PPSFW\Vendor\WOWPRB\WPPluginReviewBug(
 			__FILE__,
 			'post-purchase-survey-for-woocommerce',
 			array(
@@ -81,7 +81,7 @@ add_action(
 				'nobug_link_text'  => __( 'Don\'t ask again', 'post-purchase-survey-for-woocommerce' ),
 			),
 			array(
-				'need_help_url' => PPS\Plugin::support_url(),
+				'need_help_url' => PPSFW\Plugin::support_url(),
 			)
 		);
 	},
@@ -115,20 +115,20 @@ add_action(
 		/**
 		 * Has the plugin version updated?
 		 */
-		PPS\Install::maybe_update();
+		PPSFW\Install::maybe_update();
 
 		/**
 		 * Initiate classes and their hooks.
 		 */
 		$classes = array(
-			'PPS\PostTypes',
-			'PPS\Front',
-			'PPS\Admin',
-			'PPS\AdminSurvey',
-			'PPS\AdminQuestionMeta',
-			'PPS\AdminReports',
-			'PPS\OrderMeta',
-			'PPS\Privacy',
+			'PPSFW\PostTypes',
+			'PPSFW\Front',
+			'PPSFW\Admin',
+			'PPSFW\AdminSurvey',
+			'PPSFW\AdminQuestionMeta',
+			'PPSFW\AdminReports',
+			'PPSFW\OrderMeta',
+			'PPSFW\Privacy',
 		);
 
 		foreach ( $classes as $class ) {

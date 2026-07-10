@@ -1,5 +1,5 @@
 <?php
-namespace PPS\Vendor\WOAdminFramework;
+namespace PPSFW\Vendor\WOAdminFramework;
 
 /**
  * Class for working with namespaced options in your plugin.

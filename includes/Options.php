@@ -1,7 +1,7 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
-use PPS\Vendor\WOAdminFramework\WOOptions;
+use PPSFW\Vendor\WOAdminFramework\WOOptions;
 
 /**
  * Class for making handling options easier.

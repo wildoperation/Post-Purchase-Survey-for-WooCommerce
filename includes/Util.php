@@ -1,7 +1,7 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
-use PPS\Vendor\WOAdminFramework\WOUtilities;
+use PPSFW\Vendor\WOAdminFramework\WOUtilities;
 
 /**
  * Misc helper classes used throughout this plugin.

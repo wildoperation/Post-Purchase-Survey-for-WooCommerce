@@ -3,7 +3,7 @@ Contributors: wildoperation, timstl
 Tags: woocommerce, survey, attribution, checkout, marketing
 Requires at least: 6.2
 Tested up to: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -40,7 +40,7 @@ Getting started takes about a minute: activation creates an example "How did you
 
 **Extensible**
 
-Developers can customize behavior with filters and actions (`pps_should_display`, `pps_response_data`, `pps_after_response_saved`, and more). See the plugin's readme.md for the full list.
+Developers can customize behavior with filters and actions (`ppsfw_should_display`, `ppsfw_response_data`, `ppsfw_after_response_saved`, and more). See the plugin's readme.md for the full list.
 
 == Frequently Asked Questions ==
 
@@ -86,6 +86,9 @@ Responses are tied to orders. The plugin registers a WordPress personal data exp
 6. The customer's answer on the order screen
 
 == Changelog ==
+
+= 1.0.1 =
+* Longer unique prefix, dismissible admin notice, updated bundled admin framework
 
 = 1.0.0 =
 * Initial version

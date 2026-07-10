@@ -1,5 +1,5 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * Misc data used throughout this plugin.
@@ -12,7 +12,7 @@ class Plugin {
 	 * @return string
 	 */
 	public static function version() {
-		return '1.0.0';
+		return '1.0.1';
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Plugin {
 	 * @return string
 	 */
 	public static function ns() {
-		return 'pps';
+		return 'ppsfw';
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Plugin {
 	 * @return string
 	 */
 	public static function assets_path() {
-		return PPS_PLUGIN_DIR . 'dist/';
+		return PPSFW_PLUGIN_DIR . 'dist/';
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Plugin {
 	 * @return string
 	 */
 	public static function assets_url() {
-		return PPS_PLUGIN_URL . 'dist/';
+		return PPSFW_PLUGIN_URL . 'dist/';
 	}
 
 	/**

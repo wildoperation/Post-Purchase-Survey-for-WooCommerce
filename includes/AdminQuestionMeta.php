@@ -1,8 +1,8 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
-use PPS\Vendor\WOAdminFramework\WOForms;
-use PPS\Vendor\WOAdminFramework\WOMeta;
+use PPSFW\Vendor\WOAdminFramework\WOForms;
+use PPSFW\Vendor\WOAdminFramework\WOMeta;
 
 /**
  * The answers repeater meta box on the question edit screen.
@@ -33,7 +33,7 @@ class AdminQuestionMeta {
 		add_action( 'save_post_' . Plugin::posttype_question(), array( $this, 'save_posted_metadata' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'edit_form_after_title', array( $this, 'after_title_note' ) );
-		add_action( 'admin_post_pps_delete_question_responses', array( $this, 'delete_question_responses' ) );
+		add_action( 'admin_post_ppsfw_delete_question_responses', array( $this, 'delete_question_responses' ) );
 		add_action( 'admin_notices', array( $this, 'responses_deleted_notice' ) );
 	}
 
@@ -50,7 +50,7 @@ class AdminQuestionMeta {
 		}
 
 		?>
-		<p class="description pps-question-note"><?php esc_html_e( 'Changing a question will not reset responses and report data. To do so, create a new question.', 'post-purchase-survey-for-woocommerce' ); ?></p>
+		<p class="description ppsfw-question-note"><?php esc_html_e( 'Changing a question will not reset responses and report data. To do so, create a new question.', 'post-purchase-survey-for-woocommerce' ); ?></p>
 		<?php
 	}
 
@@ -157,34 +157,34 @@ class AdminQuestionMeta {
 				)
 			);
 			?>
-			<a href="<?php echo esc_url( add_query_arg( 'pps_question', $post->ID, Admin::reports_admin_url() ) ); ?>"><?php esc_html_e( 'View full report', 'post-purchase-survey-for-woocommerce' ); ?></a>
+			<a href="<?php echo esc_url( add_query_arg( 'ppsfw_question', $post->ID, Admin::reports_admin_url() ) ); ?>"><?php esc_html_e( 'View full report', 'post-purchase-survey-for-woocommerce' ); ?></a>
 		</p>
 
-		<table class="widefat striped pps-report-table">
+		<table class="widefat striped ppsfw-report-table">
 			<thead>
 				<tr>
 					<th><?php esc_html_e( 'Answer', 'post-purchase-survey-for-woocommerce' ); ?></th>
-					<th class="pps-report-table__num"><?php esc_html_e( 'Responses', 'post-purchase-survey-for-woocommerce' ); ?></th>
-					<th class="pps-report-table__num"><?php esc_html_e( 'Percentage', 'post-purchase-survey-for-woocommerce' ); ?></th>
+					<th class="ppsfw-report-table__num"><?php esc_html_e( 'Responses', 'post-purchase-survey-for-woocommerce' ); ?></th>
+					<th class="ppsfw-report-table__num"><?php esc_html_e( 'Percentage', 'post-purchase-survey-for-woocommerce' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ( $report['rows'] as $row ) : ?>
 					<tr>
 						<td><?php echo esc_html( $row['label'] ); ?></td>
-						<td class="pps-report-table__num"><?php echo esc_html( number_format_i18n( $row['count'] ) ); ?></td>
-						<td class="pps-report-table__num"><?php echo esc_html( number_format_i18n( $row['percentage'], 1 ) . '%' ); ?></td>
+						<td class="ppsfw-report-table__num"><?php echo esc_html( number_format_i18n( $row['count'] ) ); ?></td>
+						<td class="ppsfw-report-table__num"><?php echo esc_html( number_format_i18n( $row['percentage'], 1 ) . '%' ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
 		</table>
 
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="pps-delete-responses">
-			<input type="hidden" name="action" value="pps_delete_question_responses" />
-			<input type="hidden" name="pps_question_id" value="<?php echo esc_attr( $post->ID ); ?>" />
-			<?php wp_nonce_field( 'pps_delete_question_responses', 'pps_delete_nonce' ); ?>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="ppsfw-delete-responses">
+			<input type="hidden" name="action" value="ppsfw_delete_question_responses" />
+			<input type="hidden" name="ppsfw_question_id" value="<?php echo esc_attr( $post->ID ); ?>" />
+			<?php wp_nonce_field( 'ppsfw_delete_question_responses', 'ppsfw_delete_nonce' ); ?>
 
-			<button type="submit" class="button pps-delete-responses__button" onclick="return window.confirm( '<?php echo esc_js( __( 'Delete all responses for this question? This also removes them from reports and cannot be undone.', 'post-purchase-survey-for-woocommerce' ) ); ?>' );">
+			<button type="submit" class="button ppsfw-delete-responses__button" onclick="return window.confirm( '<?php echo esc_js( __( 'Delete all responses for this question? This also removes them from reports and cannot be undone.', 'post-purchase-survey-for-woocommerce' ) ); ?>' );">
 				<?php esc_html_e( 'Delete All Responses', 'post-purchase-survey-for-woocommerce' ); ?>
 			</button>
 		</form>
@@ -201,9 +201,9 @@ class AdminQuestionMeta {
 			wp_die( esc_html__( 'You are not allowed to delete survey responses.', 'post-purchase-survey-for-woocommerce' ) );
 		}
 
-		check_admin_referer( 'pps_delete_question_responses', 'pps_delete_nonce' );
+		check_admin_referer( 'ppsfw_delete_question_responses', 'ppsfw_delete_nonce' );
 
-		$question_id = isset( $_POST['pps_question_id'] ) ? absint( $_POST['pps_question_id'] ) : 0;
+		$question_id = isset( $_POST['ppsfw_question_id'] ) ? absint( $_POST['ppsfw_question_id'] ) : 0;
 		$post        = $question_id ? get_post( $question_id ) : null;
 
 		if ( ! $post || $post->post_type !== Plugin::posttype_question() ) {
@@ -214,7 +214,7 @@ class AdminQuestionMeta {
 
 		wp_safe_redirect(
 			add_query_arg(
-				'pps_deleted',
+				'ppsfw_deleted',
 				$deleted,
 				get_edit_post_link( $question_id, 'raw' )
 			)
@@ -228,6 +228,10 @@ class AdminQuestionMeta {
 	 * @return void
 	 */
 	public function responses_deleted_notice() {
+		if ( ! current_user_can( Plugin::capability() ) ) {
+			return;
+		}
+
 		$screen = get_current_screen();
 
 		if ( ! $screen || $screen->id !== Plugin::posttype_question() ) {
@@ -235,12 +239,12 @@ class AdminQuestionMeta {
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only notice from a redirect parameter.
-		if ( ! isset( $_GET['pps_deleted'] ) ) {
+		if ( ! isset( $_GET['ppsfw_deleted'] ) ) {
 			return;
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only notice from a redirect parameter.
-		$deleted = absint( $_GET['pps_deleted'] );
+		$deleted = absint( $_GET['ppsfw_deleted'] );
 
 		?>
 		<div class="notice notice-success is-dismissible">
@@ -261,8 +265,8 @@ class AdminQuestionMeta {
 
 	/**
 	 * Render the answers repeater.
-	 * Rows post as parallel arrays (pps_answer_labels[], pps_answer_values[],
-	 * pps_answer_enabled[]) that stay aligned because every row submits all
+	 * Rows post as parallel arrays (ppsfw_answer_labels[], ppsfw_answer_values[],
+	 * ppsfw_answer_enabled[]) that stay aligned because every row submits all
 	 * three inputs in DOM order.
 	 *
 	 * @param \WP_Post $post The question post.
@@ -272,7 +276,7 @@ class AdminQuestionMeta {
 	public function render_answers_meta_box( $post ) {
 		/*
 		 * Raw meta only: the edit screen must never display (and re-save)
-		 * options injected by the pps_answer_options filter.
+		 * options injected by the ppsfw_answer_options filter.
 		 */
 		$options = get_post_meta( $post->ID, Plugin::meta_key_answers(), true );
 
@@ -293,7 +297,7 @@ class AdminQuestionMeta {
 			'other_label'   => is_string( $other_label ) ? $other_label : '',
 		);
 
-		wp_nonce_field( 'pps_save_question', 'pps_question_nonce' );
+		wp_nonce_field( 'ppsfw_save_question', 'ppsfw_question_nonce' );
 
 		$rows = array();
 
@@ -324,7 +328,7 @@ class AdminQuestionMeta {
 			),
 			$rows,
 			array(
-				'classes' => array( 'pps-answer-options' ),
+				'classes' => array( 'ppsfw-answer-options' ),
 				'width'   => '620',
 			)
 		);
@@ -343,19 +347,19 @@ class AdminQuestionMeta {
 	 */
 	protected function render_other_option( $question ) {
 		?>
-		<div class="pps-question-field pps-question-field--other">
+		<div class="ppsfw-question-field ppsfw-question-field--other">
 			<p>
 				<?php
-				$this->forms()->checkbox( 'pps_question_other', $question['other_enabled'] ? 1 : 0 );
-				$this->forms()->label( 'pps_question_other', '<strong>' . esc_html__( 'Offer an "Other" option with a free-text field', 'post-purchase-survey-for-woocommerce' ) . '</strong>' );
+				$this->forms()->checkbox( 'ppsfw_question_other', $question['other_enabled'] ? 1 : 0 );
+				$this->forms()->label( 'ppsfw_question_other', '<strong>' . esc_html__( 'Offer an "Other" option with a free-text field', 'post-purchase-survey-for-woocommerce' ) . '</strong>' );
 				?>
 			</p>
 			<p>
 				<?php
-				$this->forms()->label( 'pps_question_other_label', esc_html__( '"Other" label', 'post-purchase-survey-for-woocommerce' ) );
+				$this->forms()->label( 'ppsfw_question_other_label', esc_html__( '"Other" label', 'post-purchase-survey-for-woocommerce' ) );
 				echo '<br />';
 				$this->forms()->input(
-					'pps_question_other_label',
+					'ppsfw_question_other_label',
 					$question['other_label'],
 					'text',
 					array(
@@ -380,7 +384,7 @@ class AdminQuestionMeta {
 		$forms = $this->forms();
 
 		$label_cell  = $forms->input(
-			'pps_answer_labels[]',
+			'ppsfw_answer_labels[]',
 			$option['label'],
 			'text',
 			array(
@@ -390,7 +394,7 @@ class AdminQuestionMeta {
 			)
 		);
 		$label_cell .= $forms->input(
-			'pps_answer_values[]',
+			'ppsfw_answer_values[]',
 			$option['value'],
 			'hidden',
 			array(
@@ -400,7 +404,7 @@ class AdminQuestionMeta {
 		);
 
 		$status_cell = $forms->select(
-			'pps_answer_enabled[]',
+			'ppsfw_answer_enabled[]',
 			array(
 				'1' => __( 'Enabled', 'post-purchase-survey-for-woocommerce' ),
 				'0' => __( 'Disabled', 'post-purchase-survey-for-woocommerce' ),
@@ -424,7 +428,7 @@ class AdminQuestionMeta {
 	 * @return void
 	 */
 	public function save_posted_metadata( $post_id, $post ) {
-		if ( ! isset( $_POST['pps_question_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['pps_question_nonce'] ) ), 'pps_save_question' ) ) {
+		if ( ! isset( $_POST['ppsfw_question_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['ppsfw_question_nonce'] ) ), 'ppsfw_save_question' ) ) {
 			return;
 		}
 
@@ -442,9 +446,9 @@ class AdminQuestionMeta {
 
 		// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized row-by-row in Survey::sanitize_answer_rows().
 		$options = Survey::sanitize_answer_rows(
-			isset( $_POST['pps_answer_labels'] ) ? wp_unslash( $_POST['pps_answer_labels'] ) : array(),
-			isset( $_POST['pps_answer_values'] ) ? wp_unslash( $_POST['pps_answer_values'] ) : array(),
-			isset( $_POST['pps_answer_enabled'] ) ? wp_unslash( $_POST['pps_answer_enabled'] ) : array()
+			isset( $_POST['ppsfw_answer_labels'] ) ? wp_unslash( $_POST['ppsfw_answer_labels'] ) : array(),
+			isset( $_POST['ppsfw_answer_values'] ) ? wp_unslash( $_POST['ppsfw_answer_values'] ) : array(),
+			isset( $_POST['ppsfw_answer_enabled'] ) ? wp_unslash( $_POST['ppsfw_answer_enabled'] ) : array()
 		);
 		// phpcs:enable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
@@ -453,9 +457,9 @@ class AdminQuestionMeta {
 		/**
 		 * Per-question "Other" option.
 		 */
-		update_post_meta( $post_id, Plugin::meta_key_question_other(), isset( $_POST['pps_question_other'] ) ? 1 : 0 );
+		update_post_meta( $post_id, Plugin::meta_key_question_other(), isset( $_POST['ppsfw_question_other'] ) ? 1 : 0 );
 
-		$other_label = isset( $_POST['pps_question_other_label'] ) ? sanitize_text_field( wp_unslash( $_POST['pps_question_other_label'] ) ) : '';
+		$other_label = isset( $_POST['ppsfw_question_other_label'] ) ? sanitize_text_field( wp_unslash( $_POST['ppsfw_question_other_label'] ) ) : '';
 
 		update_post_meta( $post_id, Plugin::meta_key_question_other_label(), $other_label );
 	}

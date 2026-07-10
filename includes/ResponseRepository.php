@@ -1,5 +1,5 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * All access to the custom responses table.

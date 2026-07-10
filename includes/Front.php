@@ -1,5 +1,5 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * Front-end rendering and submission handling for the survey.
@@ -17,11 +17,11 @@ class Front {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 
-		add_action( 'wp_ajax_pps_submit_response', array( $this, 'ajax_submit' ) );
-		add_action( 'wp_ajax_nopriv_pps_submit_response', array( $this, 'ajax_submit' ) );
+		add_action( 'wp_ajax_ppsfw_submit_response', array( $this, 'ajax_submit' ) );
+		add_action( 'wp_ajax_nopriv_ppsfw_submit_response', array( $this, 'ajax_submit' ) );
 
-		add_action( 'admin_post_pps_submit_response', array( $this, 'post_submit' ) );
-		add_action( 'admin_post_nopriv_pps_submit_response', array( $this, 'post_submit' ) );
+		add_action( 'admin_post_ppsfw_submit_response', array( $this, 'post_submit' ) );
+		add_action( 'admin_post_nopriv_ppsfw_submit_response', array( $this, 'post_submit' ) );
 	}
 
 	/**
@@ -106,7 +106,7 @@ class Front {
 			 *
 			 * @param \WC_Order $order The current order.
 			 */
-			do_action( 'pps_render_before_form', $order );
+			do_action( 'ppsfw_render_before_form', $order );
 
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in form_html().
 			echo $this->form_html( $order, $unanswered );
@@ -116,7 +116,7 @@ class Front {
 			 *
 			 * @param \WC_Order $order The current order.
 			 */
-			do_action( 'pps_render_after_form', $order );
+			do_action( 'ppsfw_render_after_form', $order );
 		} catch ( \Throwable $t ) {
 			return;
 		}
@@ -173,7 +173,7 @@ class Front {
 		 * @param bool           $display Whether to display the survey.
 		 * @param \WC_Order|bool $order The current order.
 		 */
-		return apply_filters( 'pps_should_display', $display, $order );
+		return apply_filters( 'ppsfw_should_display', $display, $order );
 	}
 
 	/**
@@ -210,20 +210,20 @@ class Front {
 	 * @return string
 	 */
 	protected function form_html( $order, $questions ) {
-		$html  = '<div class="pps-survey" id="pps-survey">';
-		$html .= '<form class="pps-survey__form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+		$html  = '<div class="ppsfw-survey" id="ppsfw-survey">';
+		$html .= '<form class="ppsfw-survey__form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 
 		foreach ( $questions as $question ) {
 			$html .= $this->question_fieldset_html( $question );
 		}
 
-		$html .= '<input type="hidden" name="action" value="pps_submit_response" />';
-		$html .= '<input type="hidden" name="pps_order_id" value="' . esc_attr( $order->get_id() ) . '" />';
-		$html .= '<input type="hidden" name="pps_order_key" value="' . esc_attr( $order->get_order_key() ) . '" />';
-		$html .= wp_nonce_field( 'pps_submit_response', 'pps_nonce', false, false );
+		$html .= '<input type="hidden" name="action" value="ppsfw_submit_response" />';
+		$html .= '<input type="hidden" name="ppsfw_order_id" value="' . esc_attr( $order->get_id() ) . '" />';
+		$html .= '<input type="hidden" name="ppsfw_order_key" value="' . esc_attr( $order->get_order_key() ) . '" />';
+		$html .= wp_nonce_field( 'ppsfw_submit_response', 'ppsfw_nonce', false, false );
 
-		$html .= '<button type="submit" class="button pps-survey__submit">' . esc_html__( 'Submit', 'post-purchase-survey-for-woocommerce' ) . '</button>';
-		$html .= '<span class="pps-survey__error" role="alert" aria-live="polite"></span>';
+		$html .= '<button type="submit" class="button ppsfw-survey__submit">' . esc_html__( 'Submit', 'post-purchase-survey-for-woocommerce' ) . '</button>';
+		$html .= '<span class="ppsfw-survey__error" role="alert" aria-live="polite"></span>';
 		$html .= '</form>';
 		$html .= '</div>';
 
@@ -242,18 +242,18 @@ class Front {
 		$options     = Survey::enabled_options( $question );
 
 		$field_id = function ( $suffix ) use ( $question_id ) {
-			return 'pps-q' . $question_id . '-' . $suffix;
+			return 'ppsfw-q' . $question_id . '-' . $suffix;
 		};
 
-		$html  = '<fieldset class="pps-survey__fieldset">';
-		$html .= '<legend class="pps-survey__question">' . esc_html( $question['text'] ) . '</legend>';
-		$html .= '<ul class="pps-survey__options">';
+		$html  = '<fieldset class="ppsfw-survey__fieldset">';
+		$html .= '<legend class="ppsfw-survey__question">' . esc_html( $question['text'] ) . '</legend>';
+		$html .= '<ul class="ppsfw-survey__options">';
 
 		foreach ( $options as $option ) {
 			$id = $field_id( sanitize_html_class( $option['value'] ) );
 
-			$html .= '<li class="pps-survey__option">';
-			$html .= '<input type="radio" name="pps_answer[' . esc_attr( $question_id ) . ']" required id="' . esc_attr( $id ) . '" value="' . esc_attr( $option['value'] ) . '" />';
+			$html .= '<li class="ppsfw-survey__option">';
+			$html .= '<input type="radio" name="ppsfw_answer[' . esc_attr( $question_id ) . ']" required id="' . esc_attr( $id ) . '" value="' . esc_attr( $option['value'] ) . '" />';
 			$html .= '<label for="' . esc_attr( $id ) . '">' . esc_html( $option['label'] ) . '</label>';
 			$html .= '</li>';
 		}
@@ -262,12 +262,12 @@ class Front {
 			$other_id = $field_id( 'option-other' );
 			$text_id  = $field_id( 'other-text' );
 
-			$html .= '<li class="pps-survey__option pps-survey__option--other">';
-			$html .= '<input type="radio" name="pps_answer[' . esc_attr( $question_id ) . ']" required id="' . esc_attr( $other_id ) . '" value="' . esc_attr( Plugin::other_value() ) . '" class="pps-survey__other-radio" />';
+			$html .= '<li class="ppsfw-survey__option ppsfw-survey__option--other">';
+			$html .= '<input type="radio" name="ppsfw_answer[' . esc_attr( $question_id ) . ']" required id="' . esc_attr( $other_id ) . '" value="' . esc_attr( Plugin::other_value() ) . '" class="ppsfw-survey__other-radio" />';
 			$html .= '<label for="' . esc_attr( $other_id ) . '">' . esc_html( $question['other_label'] ) . '</label>';
-			$html .= '<span class="pps-survey__other-text">';
+			$html .= '<span class="ppsfw-survey__other-text">';
 			$html .= '<label class="screen-reader-text" for="' . esc_attr( $text_id ) . '">' . esc_html__( 'Please tell us more', 'post-purchase-survey-for-woocommerce' ) . '</label>';
-			$html .= '<input type="text" name="pps_other_text[' . esc_attr( $question_id ) . ']" id="' . esc_attr( $text_id ) . '" maxlength="500" placeholder="' . esc_attr__( 'Please tell us more', 'post-purchase-survey-for-woocommerce' ) . '" />';
+			$html .= '<input type="text" name="ppsfw_other_text[' . esc_attr( $question_id ) . ']" id="' . esc_attr( $text_id ) . '" maxlength="500" placeholder="' . esc_attr__( 'Please tell us more', 'post-purchase-survey-for-woocommerce' ) . '" />';
 			$html .= '</span>';
 			$html .= '</li>';
 		}
@@ -284,7 +284,7 @@ class Front {
 	 * @return string
 	 */
 	public function thank_you_html() {
-		return '<div class="pps-survey pps-survey--thanks" id="pps-survey"><p>' . esc_html( Survey::thank_you_message() ) . '</p></div>';
+		return '<div class="ppsfw-survey ppsfw-survey--thanks" id="ppsfw-survey"><p>' . esc_html( Survey::thank_you_message() ) . '</p></div>';
 	}
 
 	/**
@@ -326,7 +326,7 @@ class Front {
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 			),
-			'pps_survey'
+			'ppsfw_survey'
 		);
 	}
 
@@ -391,7 +391,7 @@ class Front {
 
 		$generic_error = __( 'Sorry, your response could not be saved. Please refresh the page and try again.', 'post-purchase-survey-for-woocommerce' );
 
-		if ( ! isset( $_POST['pps_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['pps_nonce'] ) ), 'pps_submit_response' ) ) {
+		if ( ! isset( $_POST['ppsfw_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['ppsfw_nonce'] ) ), 'ppsfw_submit_response' ) ) {
 			return $fail( $generic_error );
 		}
 
@@ -399,9 +399,9 @@ class Front {
 			return $fail( $generic_error );
 		}
 
-		$order_id = isset( $_POST['pps_order_id'] ) ? absint( $_POST['pps_order_id'] ) : 0;
+		$order_id = isset( $_POST['ppsfw_order_id'] ) ? absint( $_POST['ppsfw_order_id'] ) : 0;
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized with wc_clean().
-		$order_key = isset( $_POST['pps_order_key'] ) ? wc_clean( wp_unslash( $_POST['pps_order_key'] ) ) : '';
+		$order_key = isset( $_POST['ppsfw_order_key'] ) ? wc_clean( wp_unslash( $_POST['ppsfw_order_key'] ) ) : '';
 
 		$order = $order_id ? wc_get_order( $order_id ) : false;
 
@@ -416,8 +416,8 @@ class Front {
 		}
 
 		// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized per value below.
-		$posted_answers = isset( $_POST['pps_answer'] ) && is_array( $_POST['pps_answer'] ) ? wp_unslash( $_POST['pps_answer'] ) : array();
-		$posted_other   = isset( $_POST['pps_other_text'] ) && is_array( $_POST['pps_other_text'] ) ? wp_unslash( $_POST['pps_other_text'] ) : array();
+		$posted_answers = isset( $_POST['ppsfw_answer'] ) && is_array( $_POST['ppsfw_answer'] ) ? wp_unslash( $_POST['ppsfw_answer'] ) : array();
+		$posted_other   = isset( $_POST['ppsfw_other_text'] ) && is_array( $_POST['ppsfw_other_text'] ) ? wp_unslash( $_POST['ppsfw_other_text'] ) : array();
 		// phpcs:enable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		$repository = ResponseRepository::instance();
@@ -486,7 +486,7 @@ class Front {
 			 * @param array     $data The response data.
 			 * @param \WC_Order $order The order.
 			 */
-			$data = apply_filters( 'pps_response_data', $data, $order );
+			$data = apply_filters( 'ppsfw_response_data', $data, $order );
 
 			$inserted = $repository->insert( $data );
 
@@ -524,7 +524,7 @@ class Front {
 			 * @param int   $order_id The order ID.
 			 * @param array $data The saved response data.
 			 */
-			do_action( 'pps_after_response_saved', $order->get_id(), $data );
+			do_action( 'ppsfw_after_response_saved', $order->get_id(), $data );
 		}
 
 		if ( $saved > 0 || $already_answered >= count( $questions ) ) {

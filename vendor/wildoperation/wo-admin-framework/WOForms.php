@@ -1,5 +1,5 @@
 <?php
-namespace PPS\Vendor\WOAdminFramework;
+namespace PPSFW\Vendor\WOAdminFramework;
 
 /**
  * Create form elements for use in meta or options.

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Post-Purchase Survey for WooCommerce 1.0.0\n"
+"Project-Id-Version: Post-Purchase Survey for WooCommerce 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/post-purchase-survey-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-07T15:43:17+00:00\n"
+"POT-Creation-Date: 2026-07-10T12:43:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: post-purchase-survey-for-woocommerce\n"
@@ -20,14 +20,13 @@ msgid "Post-Purchase Survey for WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin
-#. Author URI of the plugin
 #: post-purchase-survey-for-woocommerce.php
-msgid "https://wildoperation.com"
+msgid "https://github.com/wildoperation/Post-Purchase-Survey-for-WooCommerce"
 msgstr ""
 
 #. Description of the plugin
 #: post-purchase-survey-for-woocommerce.php
-msgid "Ask customers \"How did you hear about us?\" on the WooCommerce thank-you page and report which channels drive your orders."
+msgid "Ask customers a survey question on the WooCommerce order confirmation page and create reports of responses."
 msgstr ""
 
 #. Author of the plugin
@@ -35,64 +34,77 @@ msgstr ""
 msgid "Wild Operation"
 msgstr ""
 
-#: includes/Admin.php:80
-#: includes/Admin.php:140
+#. Author URI of the plugin
+#: post-purchase-survey-for-woocommerce.php
+msgid "https://wildoperation.com"
+msgstr ""
+
+#: includes/Admin.php:81
 #: includes/Admin.php:141
+#: includes/Admin.php:142
 #: includes/AdminSurvey.php:57
 msgid "Survey"
 msgstr ""
 
-#: includes/Admin.php:84
-#: includes/Admin.php:106
-#: includes/Admin.php:158
+#: includes/Admin.php:85
+#: includes/Admin.php:107
 #: includes/Admin.php:159
+#: includes/Admin.php:160
 msgid "Settings"
 msgstr ""
 
-#: includes/Admin.php:110
+#: includes/Admin.php:111
 msgid "Data"
 msgstr ""
 
-#: includes/Admin.php:112
+#: includes/Admin.php:113
 msgid "Uninstall"
 msgstr ""
 
-#: includes/Admin.php:149
 #: includes/Admin.php:150
-#: includes/Admin.php:274
+#: includes/Admin.php:151
+#: includes/Admin.php:275
 msgid "Reports"
 msgstr ""
 
-#: includes/Admin.php:242
-#: includes/Admin.php:289
+#: includes/Admin.php:243
+#: includes/Admin.php:290
 #: includes/OrderMeta.php:43
 #: includes/Plugin.php:24
 msgid "Post-Purchase Survey"
 msgstr ""
 
-#: includes/Admin.php:260
+#: includes/Admin.php:261
 msgid "The survey is enabled, but it has no published question with enabled answers, so customers will not see it. Publish a selected question below (or select a published one)."
 msgstr ""
 
-#: includes/Admin.php:312
+#: includes/Admin.php:333
 msgid "The Post-Purchase Survey is not currently enabled, so customers will not see it after checkout."
 msgstr ""
 
-#: includes/Admin.php:313
+#: includes/Admin.php:334
 msgid "Enable the survey"
 msgstr ""
 
-#: includes/Admin.php:416
+#: includes/Admin.php:335
+msgid "Dismiss this notice"
+msgstr ""
+
+#: includes/Admin.php:348
+msgid "You are not allowed to do that."
+msgstr ""
+
+#: includes/Admin.php:458
 #: includes/AdminSurvey.php:218
 msgid "Remove"
 msgstr ""
 
-#: includes/Admin.php:417
+#: includes/Admin.php:459
 #: includes/AdminSurvey.php:217
 msgid "Edit"
 msgstr ""
 
-#: includes/Admin.php:441
+#: includes/Admin.php:483
 msgid "Delete all plugin data (responses, questions, settings, order meta) when the plugin is uninstalled"
 msgstr ""
 

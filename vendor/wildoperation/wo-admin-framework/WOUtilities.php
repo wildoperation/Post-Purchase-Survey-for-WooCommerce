@@ -1,5 +1,5 @@
 <?php
-namespace PPS\Vendor\WOAdminFramework;
+namespace PPSFW\Vendor\WOAdminFramework;
 
 /**
  * General utility class for use by this framework and plugins.

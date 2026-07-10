@@ -1,5 +1,5 @@
 <?php
-namespace PPS;
+namespace PPSFW;
 
 /**
  * The Reports page: response counts and response rate, per question,
@@ -123,9 +123,9 @@ class AdminReports {
 	 */
 	protected function current_range() {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only filters; capability is checked by add_submenu_page.
-		$preset = isset( $_GET['pps_preset'] ) ? sanitize_key( wp_unslash( $_GET['pps_preset'] ) ) : 'last30';
-		$from   = isset( $_GET['pps_from'] ) ? sanitize_text_field( wp_unslash( $_GET['pps_from'] ) ) : '';
-		$to     = isset( $_GET['pps_to'] ) ? sanitize_text_field( wp_unslash( $_GET['pps_to'] ) ) : '';
+		$preset = isset( $_GET['ppsfw_preset'] ) ? sanitize_key( wp_unslash( $_GET['ppsfw_preset'] ) ) : 'last30';
+		$from   = isset( $_GET['ppsfw_from'] ) ? sanitize_text_field( wp_unslash( $_GET['ppsfw_from'] ) ) : '';
+		$to     = isset( $_GET['ppsfw_to'] ) ? sanitize_text_field( wp_unslash( $_GET['ppsfw_to'] ) ) : '';
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		return self::resolve_range( $preset, $from, $to );
@@ -171,7 +171,7 @@ class AdminReports {
 	 */
 	protected function current_question( $choices ) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter; capability is checked by add_submenu_page.
-		$question_id = isset( $_GET['pps_question'] ) ? absint( $_GET['pps_question'] ) : 0;
+		$question_id = isset( $_GET['ppsfw_question'] ) ? absint( $_GET['ppsfw_question'] ) : 0;
 
 		if ( $question_id && isset( $choices[ $question_id ] ) ) {
 			return $question_id;
@@ -210,7 +210,7 @@ class AdminReports {
 		 * @param array $args The wc_get_orders arguments.
 		 * @param array $range The resolved date range.
 		 */
-		$args = apply_filters( 'pps_report_query_args', $args, $range );
+		$args = apply_filters( 'ppsfw_report_query_args', $args, $range );
 
 		$results = wc_get_orders( $args );
 
@@ -313,7 +313,7 @@ class AdminReports {
 	 */
 	protected function render_question_heading( $question_text ) {
 		?>
-		<h3 class="pps-report-question"><?php echo esc_html( $question_text ); ?></h3>
+		<h3 class="ppsfw-report-question"><?php echo esc_html( $question_text ); ?></h3>
 		<?php
 	}
 
@@ -328,32 +328,32 @@ class AdminReports {
 	 */
 	protected function render_filters( $range, $choices, $question ) {
 		?>
-		<form method="get" action="<?php echo esc_url( admin_url( 'edit.php' ) ); ?>" class="pps-report-filters">
+		<form method="get" action="<?php echo esc_url( admin_url( 'edit.php' ) ); ?>" class="ppsfw-report-filters">
 			<input type="hidden" name="post_type" value="<?php echo esc_attr( Plugin::posttype_question() ); ?>" />
 			<input type="hidden" name="page" value="<?php echo esc_attr( Admin::admin_slug( 'reports' ) ); ?>" />
 
 			<?php if ( ! empty( $choices ) ) : ?>
-				<label for="pps_question"><?php esc_html_e( 'Question', 'post-purchase-survey-for-woocommerce' ); ?></label>
-				<select name="pps_question" id="pps_question">
+				<label for="ppsfw_question"><?php esc_html_e( 'Question', 'post-purchase-survey-for-woocommerce' ); ?></label>
+				<select name="ppsfw_question" id="ppsfw_question">
 					<?php foreach ( $choices as $choice_id => $choice_label ) : ?>
 						<option value="<?php echo esc_attr( $choice_id ); ?>" <?php selected( $choice_id, $question ); ?>><?php echo esc_html( $choice_label ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			<?php endif; ?>
 
-			<label for="pps_preset"><?php esc_html_e( 'Date range', 'post-purchase-survey-for-woocommerce' ); ?></label>
-			<select name="pps_preset" id="pps_preset">
+			<label for="ppsfw_preset"><?php esc_html_e( 'Date range', 'post-purchase-survey-for-woocommerce' ); ?></label>
+			<select name="ppsfw_preset" id="ppsfw_preset">
 				<?php foreach ( self::presets() as $key => $label ) : ?>
 					<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $range['preset'] ); ?>><?php echo esc_html( $label ); ?></option>
 				<?php endforeach; ?>
 			</select>
 
-			<span class="pps-report-filters__custom">
-				<label class="screen-reader-text" for="pps_from"><?php esc_html_e( 'From date', 'post-purchase-survey-for-woocommerce' ); ?></label>
-				<input type="date" name="pps_from" id="pps_from" value="<?php echo esc_attr( $range['preset'] === 'custom' ? $range['from_local'] : '' ); ?>" />
+			<span class="ppsfw-report-filters__custom">
+				<label class="screen-reader-text" for="ppsfw_from"><?php esc_html_e( 'From date', 'post-purchase-survey-for-woocommerce' ); ?></label>
+				<input type="date" name="ppsfw_from" id="ppsfw_from" value="<?php echo esc_attr( $range['preset'] === 'custom' ? $range['from_local'] : '' ); ?>" />
 				<span aria-hidden="true">&ndash;</span>
-				<label class="screen-reader-text" for="pps_to"><?php esc_html_e( 'To date', 'post-purchase-survey-for-woocommerce' ); ?></label>
-				<input type="date" name="pps_to" id="pps_to" value="<?php echo esc_attr( $range['preset'] === 'custom' ? $range['to_local'] : '' ); ?>" />
+				<label class="screen-reader-text" for="ppsfw_to"><?php esc_html_e( 'To date', 'post-purchase-survey-for-woocommerce' ); ?></label>
+				<input type="date" name="ppsfw_to" id="ppsfw_to" value="<?php echo esc_attr( $range['preset'] === 'custom' ? $range['to_local'] : '' ); ?>" />
 			</span>
 
 			<button type="submit" class="button"><?php esc_html_e( 'Apply', 'post-purchase-survey-for-woocommerce' ); ?></button>
@@ -374,17 +374,17 @@ class AdminReports {
 	 */
 	protected function render_stats( $total, $orders, $response_rate ) {
 		?>
-		<div class="pps-report-stats">
-			<div class="pps-report-stat">
-				<span class="pps-report-stat__value"><?php echo esc_html( number_format_i18n( $total ) ); ?></span>
-				<span class="pps-report-stat__label"><?php esc_html_e( 'Responses', 'post-purchase-survey-for-woocommerce' ); ?></span>
+		<div class="ppsfw-report-stats">
+			<div class="ppsfw-report-stat">
+				<span class="ppsfw-report-stat__value"><?php echo esc_html( number_format_i18n( $total ) ); ?></span>
+				<span class="ppsfw-report-stat__label"><?php esc_html_e( 'Responses', 'post-purchase-survey-for-woocommerce' ); ?></span>
 			</div>
-			<div class="pps-report-stat">
-				<span class="pps-report-stat__value"><?php echo esc_html( number_format_i18n( $orders ) ); ?></span>
-				<span class="pps-report-stat__label"><?php esc_html_e( 'Orders in range', 'post-purchase-survey-for-woocommerce' ); ?></span>
+			<div class="ppsfw-report-stat">
+				<span class="ppsfw-report-stat__value"><?php echo esc_html( number_format_i18n( $orders ) ); ?></span>
+				<span class="ppsfw-report-stat__label"><?php esc_html_e( 'Orders in range', 'post-purchase-survey-for-woocommerce' ); ?></span>
 			</div>
-			<div class="pps-report-stat">
-				<span class="pps-report-stat__value">
+			<div class="ppsfw-report-stat">
+				<span class="ppsfw-report-stat__value">
 					<?php
 					if ( $response_rate !== null ) {
 						echo esc_html( number_format_i18n( $response_rate, 1 ) . '%' );
@@ -393,7 +393,7 @@ class AdminReports {
 					}
 					?>
 				</span>
-				<span class="pps-report-stat__label"><?php esc_html_e( 'Response rate', 'post-purchase-survey-for-woocommerce' ); ?></span>
+				<span class="ppsfw-report-stat__label"><?php esc_html_e( 'Response rate', 'post-purchase-survey-for-woocommerce' ); ?></span>
 			</div>
 		</div>
 		<?php
@@ -408,28 +408,28 @@ class AdminReports {
 	 */
 	protected function render_table( $report ) {
 		?>
-		<table class="widefat striped pps-report-table">
+		<table class="widefat striped ppsfw-report-table">
 			<thead>
 				<tr>
 					<th><?php esc_html_e( 'Answer', 'post-purchase-survey-for-woocommerce' ); ?></th>
-					<th class="pps-report-table__num"><?php esc_html_e( 'Responses', 'post-purchase-survey-for-woocommerce' ); ?></th>
-					<th class="pps-report-table__num"><?php esc_html_e( 'Percentage', 'post-purchase-survey-for-woocommerce' ); ?></th>
+					<th class="ppsfw-report-table__num"><?php esc_html_e( 'Responses', 'post-purchase-survey-for-woocommerce' ); ?></th>
+					<th class="ppsfw-report-table__num"><?php esc_html_e( 'Percentage', 'post-purchase-survey-for-woocommerce' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ( $report['rows'] as $row ) : ?>
 					<tr>
 						<td><?php echo esc_html( $row['label'] ); ?></td>
-						<td class="pps-report-table__num"><?php echo esc_html( number_format_i18n( $row['count'] ) ); ?></td>
-						<td class="pps-report-table__num"><?php echo esc_html( number_format_i18n( $row['percentage'], 1 ) . '%' ); ?></td>
+						<td class="ppsfw-report-table__num"><?php echo esc_html( number_format_i18n( $row['count'] ) ); ?></td>
+						<td class="ppsfw-report-table__num"><?php echo esc_html( number_format_i18n( $row['percentage'], 1 ) . '%' ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
 			<tfoot>
 				<tr>
 					<th><?php esc_html_e( 'Total', 'post-purchase-survey-for-woocommerce' ); ?></th>
-					<th class="pps-report-table__num"><?php echo esc_html( number_format_i18n( $report['total'] ) ); ?></th>
-					<th class="pps-report-table__num">100%</th>
+					<th class="ppsfw-report-table__num"><?php echo esc_html( number_format_i18n( $report['total'] ) ); ?></th>
+					<th class="ppsfw-report-table__num">100%</th>
 				</tr>
 			</tfoot>
 		</table>
@@ -454,7 +454,7 @@ class AdminReports {
 		$options = $question ? Survey::enabled_options( $question ) : array();
 
 		?>
-		<div class="pps-report-empty">
+		<div class="ppsfw-report-empty">
 			<h3><?php esc_html_e( 'No responses yet', 'post-purchase-survey-for-woocommerce' ); ?></h3>
 
 			<?php if ( ! Survey::is_enabled() ) : ?>
@@ -474,7 +474,7 @@ class AdminReports {
 			<?php if ( $question && ! empty( $options ) ) : ?>
 				<p><?php esc_html_e( 'Here is how the survey currently appears to customers:', 'post-purchase-survey-for-woocommerce' ); ?></p>
 
-				<div class="pps-report-preview">
+				<div class="ppsfw-report-preview">
 					<strong><?php echo esc_html( $question['text'] ); ?></strong>
 					<ul>
 						<?php foreach ( $options as $option ) : ?>
