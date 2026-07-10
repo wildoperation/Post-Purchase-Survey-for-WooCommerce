@@ -184,7 +184,7 @@ class WOForms {
 			$this_option_value = $option_value;
 
 			if ( substr( $this_option_value, 0, 9 ) === 'disabled:' ) {
-				$disabled     = true;
+				$disabled          = true;
 				$this_option_value = substr( $this_option_value, 9 );
 			} elseif ( substr( $this_option_value, 0, 16 ) === 'woadmin_divider:' ) {
 				$this_option_value = '';
