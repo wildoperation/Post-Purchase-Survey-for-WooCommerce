@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Post-Purchase Survey for WooCommerce
- * Plugin URI:        https://github.com/wildoperation/Post-Purchase-Survey-for-WooCommerce
+ * Plugin URI:        https://wordpress.org/plugins/post-purchase-survey-for-woocommerce/
  * Description:       Ask customers a survey question on the WooCommerce order confirmation page and create reports of responses.
  * Version:           1.0.1
  * Author:            Wild Operation
