@@ -12,7 +12,7 @@ Ask customers a survey question on the WooCommerce order confirmation page and c
 
 == Description ==
 
-Post-Purchase Survey for WooCommerce adds a simple, one-question attribution survey to your order-received (thank you) page. Customers submit with a single click, and you get a clear report of which marketing channels actually drive orders.
+Post-Purchase Survey for WooCommerce adds a simple, one-question attribution survey to your order-received (thank you) page. Customers submit with a single click, and you generate reports to help you learn more about your customers.
 
 Getting started takes about a minute: activation creates an example "How did you hear about us?" question (as a draft, so nothing is shown to customers yet). Review and publish it, select it on the Survey screen, and enable the survey when you're ready.
 
