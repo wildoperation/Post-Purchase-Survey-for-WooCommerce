@@ -3,7 +3,7 @@ Contributors: wildoperation, timstl
 Tags: woocommerce, survey, attribution, checkout, marketing
 Requires at least: 6.2
 Tested up to: 7.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -86,6 +86,9 @@ Responses are tied to orders. The plugin registers a WordPress personal data exp
 6. The customer's answer on the order screen
 
 == Changelog ==
+= 1.0.2 =
+* WooCommerce 11.0 compatibility
+* Minor UI improvements
 
 = 1.0.1 =
 * Longer unique prefix, dismissible admin notice, updated bundled admin framework
