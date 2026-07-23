@@ -141,7 +141,7 @@ class AdminReports {
 		$choices = array();
 
 		foreach ( Survey::selected_questions() as $question ) {
-			$choices[ $question['id'] ] = $question['text'];
+			$choices[ $question['id'] ] = $question['text'] !== '' ? $question['text'] : __( '(no title)', 'post-purchase-survey-for-woocommerce' );
 		}
 
 		foreach ( ResponseRepository::instance()->question_ids_with_responses() as $question_id ) {
@@ -152,7 +152,8 @@ class AdminReports {
 			$post = get_post( $question_id );
 
 			if ( $post && $post->post_type === Plugin::posttype_question() ) {
-				$choices[ $question_id ] = get_the_title( $post );
+				$title                   = get_the_title( $post );
+				$choices[ $question_id ] = $title !== '' ? $title : __( '(no title)', 'post-purchase-survey-for-woocommerce' );
 			} else {
 				/* translators: %d: a question ID that no longer exists. */
 				$choices[ $question_id ] = sprintf( __( 'Question #%d (deleted)', 'post-purchase-survey-for-woocommerce' ), $question_id );
